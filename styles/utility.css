@@ -17,3 +17,16 @@
 .text-xs {
   font-size: 0.875rem;
 }
+
+.flex {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.items-center {
+  align-items: center;
+}
+
+.space-between {
+  justify-content: space-between;
+}

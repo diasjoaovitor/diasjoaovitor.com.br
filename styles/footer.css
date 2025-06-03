@@ -1,0 +1,46 @@
+footer {
+  padding-block: 2rem;
+  background-image: url('../assets/images/bg-footer.svg');
+  background-size: cover;
+  text-align: center;
+
+  & .subtitle {
+    display: block;
+    color: var(--purple);
+  }
+
+  & img {
+    width: 1.75rem;
+  }
+
+  & ul {
+    max-width: 25rem;
+    margin-top: 2.5rem;
+    margin-inline: auto;
+  }
+
+  & li {
+    background-color: var(--gray-300);
+    border: 1px solid transparent;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+
+    &:hover {
+      transition: border 0.3s ease;
+      border-color: var(--blue);
+    }
+  }
+}
+
+@media (min-width: 27rem) {
+  footer {
+    padding-block: 3.5rem;
+  }
+}
+
+@media (min-width: 50rem) {
+  footer {
+    padding-block: 4.5rem;
+  }
+}

@@ -43,7 +43,40 @@ h6 {
 }
 
 .container {
-  max-width: 60rem;
+  max-width: 78rem;
   margin-inline: auto;
   padding-inline: 1rem;
+}
+
+@media (min-width: 27rem) {
+  .container {
+    padding-inline: 4rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .container {
+    padding-inline: 7.5rem;
+  }
+}
+
+strong {
+  color: var(--red);
+}
+
+img {
+  width: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+address {
+  font: inherit;
 }

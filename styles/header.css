@@ -1,0 +1,95 @@
+header {
+  text-align: center;
+  padding-block: 2rem;
+  background-image: url('../assets/images/bg-header.svg');
+  background-size: cover;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  & .avatar {
+    margin-bottom: 2rem;
+  }
+
+  & h1 {
+    margin: 0.5rem 0 1.25rem;
+  }
+}
+
+.avatar {
+  position: relative;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+.avatar img:first-of-type {
+  border: 2px solid var(--red);
+  border-radius: 50%;
+  width: 6rem;
+  height: 6rem;
+}
+
+.avatar img:last-of-type {
+  position: absolute;
+  bottom: 0;
+  width: 2rem;
+  left: 50%;
+  transform: translateX(50%);
+}
+
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 3rem;
+
+  & li {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: var(--gray-300);
+    border-radius: 999px;
+    padding-block: 0.5rem;
+    padding-inline: 1rem;
+    border: 1px solid transparent;
+
+    & img {
+      width: 1.25rem;
+    }
+  }
+
+  & li:hover {
+    transition: border 0.2s ease-in-out;
+    border: 1px solid var(--red);
+  }
+}
+
+header svg {
+  width: 1.5rem;
+  margin-top: 3rem;
+  cursor: pointer;
+
+  &:hover path {
+    transition: fill 0.2s ease-in-out;
+    fill: var(--red);
+  }
+}
+
+@media (min-width: 27rem) {
+  header {
+    padding-block: 4rem;
+  }
+
+  .avatar {
+    margin-bottom: 2rem;
+  }
+}
+
+@media (min-width: 64rem) {
+  .avatar {
+    margin-bottom: 3.5rem;
+  }
+}
