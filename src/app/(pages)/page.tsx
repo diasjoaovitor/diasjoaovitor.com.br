@@ -1,9 +1,8 @@
-import { Button, MyComponent } from '@/app/components'
+import { Button } from '@/app/components'
 
 const Home = () => {
   return (
     <>
-      <MyComponent />
       <Button>Click me</Button>
     </>
   )
