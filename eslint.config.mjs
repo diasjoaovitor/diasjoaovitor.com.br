@@ -16,14 +16,20 @@ const eslintConfig = defineConfig([
   ...nextTs,
   pluginPromise.configs['flat/recommended'],
   prettier,
-  eslintPluginTailwindcss.configs.recommended,
   preferArrowFunctions.configs.all,
   {
+    extends: [eslintPluginTailwindcss.configs.recommended],
     settings: {
       tailwindcss: {
         cssConfigPath: './src/app/styles/globals.css',
         parseKeyFunctions: ['classnames', 'classNames']
       }
+    }
+  },
+  {
+    files: ['src/app/icons/**'],
+    rules: {
+      'tailwindcss/no-custom-classname': 'off'
     }
   },
   {
@@ -33,12 +39,17 @@ const eslintConfig = defineConfig([
     },
     extends: ['unicorn/recommended'],
     rules: {
+      'unicorn/no-null': 'off',
       'unicorn/prevent-abbreviations': [
         'error',
         {
           replacements: {
             utils: false,
-            props: false
+            props: false,
+            devops: false
+          },
+          allowList: {
+            DevOps: true
           }
         }
       ]
