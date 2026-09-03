@@ -29,7 +29,7 @@ export const Nav = () => {
             href={href}
             aria-current={isActive ? 'page' : undefined}
             className={cn(
-              'text-lg transition-colors hover:text-teal-600',
+              'text-lg transition-colors hover:text-teal-500',
               isActive ? 'text-teal-500' : 'text-muted-foreground'
             )}
           >

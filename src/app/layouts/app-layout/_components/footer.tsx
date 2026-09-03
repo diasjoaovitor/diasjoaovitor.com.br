@@ -30,14 +30,14 @@ export const Footer = () => {
         <div className="flex items-center gap-2 text-xs">
           <p>&copy; {currentYear} diasjoaovitor.com.br</p>·
           <Link
-            className="transition-colors hover:text-teal-600"
+            className="transition-colors hover:text-teal-500"
             href="/termos-de-uso"
           >
             Termos de Uso
           </Link>
           ·
           <Link
-            className="transition-colors hover:text-teal-600"
+            className="transition-colors hover:text-teal-500"
             href="/politica-de-privacidade"
           >
             Política de Privacidade
@@ -52,7 +52,7 @@ export const Footer = () => {
                   target="_blank"
                   rel="noreferrer noopener"
                   aria-label={label}
-                  className="transition-colors hover:text-teal-600"
+                  className="transition-colors hover:text-teal-500"
                 >
                   <Icon size={18} aria-hidden />
                 </a>
