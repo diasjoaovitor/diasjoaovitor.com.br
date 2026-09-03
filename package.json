@@ -10,7 +10,7 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "test": "vitest --run",
+    "test": "vitest --run --passWithNoTests",
     "test:watch": "vitest",
     "type-check": "tsc --noEmit",
     "eslint:check": "eslint .",
