@@ -1,11 +1,5 @@
-import { Button } from '@/app/components'
+import { Hero } from './_components'
 
-const Home = () => {
-  return (
-    <>
-      <Button>Click me</Button>
-    </>
-  )
-}
+const Home = () => <Hero />
 
 export default Home
