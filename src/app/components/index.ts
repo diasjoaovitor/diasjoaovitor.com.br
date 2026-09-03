@@ -1,3 +1,5 @@
 export * from './ui/magic/flickering-grid'
+export * from './ui/magic/marquee'
+export * from './ui/magic/typing-animation'
 export * from './ui/shadcn/avatar'
 export * from './ui/shadcn/button'
