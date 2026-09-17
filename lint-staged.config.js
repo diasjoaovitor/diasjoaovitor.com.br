@@ -9,8 +9,11 @@ const prettier = (filenames) =>
 const eslint = (filenames) =>
   `pnpm exec eslint --fix ${relativeFiles(filenames)}`
 
+const test = (filenames) =>
+  `pnpm exec vitest related --passWithNoTests ${relativeFiles(filenames)}`
+
 export default {
-  '*.{js,jsx,ts,tsx,mjs,cjs}': [eslint, prettier],
+  '*.{js,jsx,ts,tsx,mjs,cjs}': [eslint, prettier, test],
   '*.{json,md}': [eslint, prettier],
   '*.{yml,yaml}': [prettier]
 }
