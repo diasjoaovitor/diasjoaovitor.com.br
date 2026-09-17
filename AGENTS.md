@@ -25,9 +25,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Git hooks (husky)
 
-- `pre-commit`: runs `lint-staged` (`lint-staged.config.js`) — prettier + eslint scoped per staged file type, invoked directly via `pnpm exec` rather than through `package.json` scripts.
+- `pre-commit`: runs `lint-staged` (`lint-staged.config.js`) — prettier + eslint + `vitest related --passWithNoTests` scoped per staged file type, invoked directly via `pnpm exec` rather than through `package.json` scripts.
 - `commit-msg`: auto-prepends the emoji prefix from the Commit Rules below based on the leading word (e.g. `feat: ...` → `✨ feat: ...`), then runs `commitlint` (`commitlint-config-emoji-convention`). You can type the plain word and let the hook add the emoji.
-- `pre-push`: runs `pnpm type-check` (`tsc --noEmit`).
+- `pre-push`: runs `pnpm type-check` (`tsc --noEmit`) and `pnpm test:e2e` (full Playwright suite).
+
+### Testing
+
+- Unit tests: **Vitest** (`vitest.config.mts`), `jsdom` environment, native Vite `resolve.tsconfigPaths` (no `vite-tsconfig-paths` plugin needed). Only picks up `src/**/*.test.{ts,tsx}`.
+- E2E tests: **Playwright** (`playwright.config.ts`), tests live in `src/tests/e2e`, single `chromium` project, `webServer` auto-starts `pnpm dev` against `http://localhost:3000`.
+- Scripts: `pnpm test` (unit, run once) / `pnpm test:watch` (unit, watch mode) / `pnpm test:e2e` (e2e) / `pnpm test:e2e:ui` (e2e, Playwright UI mode).
+- CI runs the full `pnpm test` and `pnpm test:e2e` suites (installing the Chromium browser first via `pnpm exec playwright install --with-deps chromium`).
 
 ### Styling & UI
 
