@@ -20,7 +20,7 @@ const eslintConfig = defineConfig([
     extends: [eslintPluginTailwindcss.configs.recommended],
     settings: {
       tailwindcss: {
-        cssConfigPath: './src/app/globals.css',
+        cssConfigPath: './src/app/styles/globals.css',
         parseKeyFunctions: ['classnames', 'classNames']
       }
     }
@@ -32,7 +32,18 @@ const eslintConfig = defineConfig([
     },
     extends: ['unicorn/recommended'],
     rules: {
-      'unicorn/logical-assignment-operators': 'off'
+      'unicorn/default-export-style': ['error', { functions: 'separate' }],
+      'unicorn/logical-assignment-operators': 'off',
+      'unicorn/no-null': 'off',
+      'unicorn/name-replacements': [
+        'error',
+        {
+          replacements: {
+            props: false,
+            utils: false
+          }
+        }
+      ]
     }
   },
   {
