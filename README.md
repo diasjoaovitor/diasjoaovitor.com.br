@@ -67,6 +67,8 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md); the highlights are belo
   - `commit-msg` adds the emoji prefix and runs `commitlint`.
   - `pre-push` runs `pnpm type-check` and `pnpm test:e2e`.
 - **Commit messages** are written in English, in the imperative mood and lowercase, with a semantic prefix, for example `✨ feat: add product page`. Typing `feat: ...` is enough, since the hook adds the emoji.
+- **Branches:** work for each issue goes on a new branch named `<scope>/<title>#<issue>`, where `<scope>` is the commit prefix without the emoji, for example `feat/home-page#3`. For very specific work, add an optional target in parentheses (a page, component or other area), for example `fix(card)/focus-ring#7`. Nothing for an issue is committed directly to `main`.
+- **Issues:** tick every completed checklist item in the issue body before closing it.
 - **GitHub Actions** (`.github/workflows/ci.yml`) runs on every pull request: commitlint, type-check, ESLint, Prettier, unit tests and E2E tests.
 
 ### AI assistant setup
