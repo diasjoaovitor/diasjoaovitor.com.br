@@ -29,7 +29,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Project conventions
 
-The full conventions live in [`AGENTS.md`](./AGENTS.md); the highlights are below.
+The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step flow from planning to merge is in [`docs/development-workflow.md`](./docs/development-workflow.md); the highlights are below.
 
 ### Tooling
 
