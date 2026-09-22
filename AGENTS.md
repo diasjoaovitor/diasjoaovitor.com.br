@@ -75,6 +75,8 @@ Before closing an issue, tick every completed checklist item (`- [x]`) in its bo
 
 ## Commit Rules
 
+Never run `git commit` on your own, even in auto/agentic mode — always suggest the commit (show the proposed message) and wait for explicit approval before actually creating it.
+
 Commit messages must be in English and follow this format:
 
 - Use the following semantic prefixes: `🎉 init, ✨ feat, 🐛 fix, 📚 docs, 💎 style, 📦 refactor, 🚀 perf, 🚨 test, 🛠 build, ⚙️ ci, ♻️ chore, 🗑 revert`
