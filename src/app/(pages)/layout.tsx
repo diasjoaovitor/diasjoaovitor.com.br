@@ -3,6 +3,8 @@ import '../styles/globals.css'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 
+import { ThemeProvider } from '@/app/components'
+
 const geistSans = Geist({
   variable: '--font-geist-sans',
   subsets: ['latin']
@@ -23,8 +25,11 @@ const RootLayout = ({ children }: LayoutProps<'/'>) => (
   <html
     lang="pt-BR"
     className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+    suppressHydrationWarning
   >
-    <body className="flex min-h-full flex-col">{children}</body>
+    <body className="flex min-h-full flex-col">
+      <ThemeProvider>{children}</ThemeProvider>
+    </body>
   </html>
 )
 
