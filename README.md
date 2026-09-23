@@ -15,17 +15,17 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 ## Scripts
 
-| Script                                      | What it does                        |
-| ------------------------------------------- | ----------------------------------- |
-| `pnpm dev`                                  | Start the development server        |
-| `pnpm build`                                | Create the production build         |
-| `pnpm start`                                | Serve the production build          |
-| `pnpm type-check`                           | Type-check with `tsc --noEmit`      |
-| `pnpm eslint:check` / `pnpm eslint:fix`     | Lint (and auto-fix) with ESLint     |
-| `pnpm prettier:check` / `pnpm prettier:fix` | Check (and rewrite) formatting      |
-| `pnpm test` / `pnpm test:watch`             | Run the Vitest unit tests           |
-| `pnpm test:e2e` / `pnpm test:e2e:ui`        | Run the Playwright end-to-end tests |
-| `pnpm shadcn:add <name>`                    | Add a shadcn/ui component           |
+| Script                                      | What it does                                            |
+| ------------------------------------------- | ------------------------------------------------------- |
+| `pnpm dev`                                  | Start the development server                            |
+| `pnpm build`                                | Create the production build                             |
+| `pnpm start`                                | Serve the production build                              |
+| `pnpm type-check`                           | Generate route types and type-check with `tsc --noEmit` |
+| `pnpm eslint:check` / `pnpm eslint:fix`     | Lint (and auto-fix) with ESLint                         |
+| `pnpm prettier:check` / `pnpm prettier:fix` | Check (and rewrite) formatting                          |
+| `pnpm test` / `pnpm test:watch`             | Run the Vitest unit tests                               |
+| `pnpm test:e2e` / `pnpm test:e2e:ui`        | Run the Playwright end-to-end tests                     |
+| `pnpm shadcn:add <name>`                    | Add a shadcn/ui component                               |
 
 ## Project conventions
 
