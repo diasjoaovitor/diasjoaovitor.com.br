@@ -55,6 +55,10 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 - **Prettier** with single quotes, no semicolons and no trailing commas. Indentation and whitespace are enforced by `.editorconfig`.
 - Scripts: `pnpm eslint:check`, `pnpm eslint:fix`, `pnpm prettier:check`, `pnpm prettier:fix` and `pnpm type-check`.
 
+### Code comments
+
+- Comments only record why a decision was made, ideally with a reference (docs, issue or upstream bug), never what the code does. They are written in English.
+
 ### Testing
 
 - **Unit tests:** Vitest with `jsdom` and Testing Library. Run `pnpm test` (once) or `pnpm test:watch`. Only `src/**/*.test.{ts,tsx}` files are picked up.

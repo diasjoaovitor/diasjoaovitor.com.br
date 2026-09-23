@@ -34,6 +34,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Prettier style: single quotes, no semicolons, no trailing commas (`.prettierrc`).
 - Base indentation/whitespace rules (2 spaces, LF, trim trailing whitespace, final newline) are enforced editor-side via `.editorconfig`.
 
+### Code comments
+
+- Comments only record **why** a decision was made, ideally with a reference (docs link, issue number, upstream bug). Never write comments that explain what the code does or how it works.
+- Default to no comment. Add one only for a non-obvious choice that someone might "fix" by mistake.
+- Write comments in English.
+
 ### Git hooks (husky)
 
 - `pre-commit`: runs `lint-staged` (`lint-staged.config.js`) — prettier + eslint + `vitest related --passWithNoTests` scoped per staged file type, invoked directly via `pnpm exec` rather than through `package.json` scripts.
