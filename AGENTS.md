@@ -38,7 +38,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `pre-commit`: runs `lint-staged` (`lint-staged.config.js`) — prettier + eslint + `vitest related --passWithNoTests` scoped per staged file type, invoked directly via `pnpm exec` rather than through `package.json` scripts.
 - `commit-msg`: auto-prepends the emoji prefix from the Commit Rules below based on the leading word (e.g. `feat: ...` → `✨ feat: ...`), then runs `commitlint` (`commitlint-config-emoji-convention`). You can type the plain word and let the hook add the emoji.
-- `pre-push`: runs `pnpm type-check` (`tsc --noEmit`) and `pnpm test:e2e` (full Playwright suite).
+- `pre-push`: runs `pnpm type-check` (`next typegen && tsc --noEmit`, so the route type helpers like `LayoutProps` exist without a prior `next dev`/`next build`) and `pnpm test:e2e` (full Playwright suite).
 
 ### Testing
 
@@ -74,6 +74,8 @@ Examples: `feat/home-page#3`, `fix(card)/focus-ring#7`. Parentheses and `#` are 
 Before closing an issue, tick every completed checklist item (`- [x]`) in its body, e.g. with `gh issue edit <number> --body-file <file>`. Don't close an issue that still has unchecked items unless they were dropped or moved, and say so in the closing comment.
 
 ## Commit Rules
+
+Never run `git commit` on your own, even in auto/agentic mode — always suggest the commit (show the proposed message) and wait for explicit approval before actually creating it.
 
 Commit messages must be in English and follow this format:
 
