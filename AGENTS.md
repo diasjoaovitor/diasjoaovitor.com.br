@@ -24,6 +24,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Anything that isn't frontend-exclusive (e.g. `src/tests`, and any future non-frontend folder) lives directly under `src`, as a sibling of `app`, not nested inside it.
 - Routes are grouped under `src/app/(pages)` (a route group, so it doesn't affect the URL).
 - Shared frontend code lives in `src/app/components` and `src/app/lib`, each re-exported through an `index.ts` barrel.
+- `src/app/components` groups components by role: `ui/` for visual building blocks (shadcn ones under `ui/shadcn/`) and `providers/` for context providers without UI of their own (e.g. `ThemeProvider`).
 - `favicon.ico` stays directly in `src/app/`, not nested in a route group.
 - React Compiler is enabled (`reactCompiler: true` in `next.config.ts`, `babel-plugin-react-compiler` devDependency).
 
@@ -33,6 +34,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Use `pnpm eslint:check` / `pnpm eslint:fix` and `pnpm prettier:check` / `pnpm prettier:fix`.
 - Prettier style: single quotes, no semicolons, no trailing commas (`.prettierrc`).
 - Base indentation/whitespace rules (2 spaces, LF, trim trailing whitespace, final newline) are enforced editor-side via `.editorconfig`.
+
+### Code comments
+
+- Comments only record **why** a decision was made, ideally with a reference (docs link, issue number, upstream bug). Never write comments that explain what the code does or how it works.
+- Default to no comment. Add one only for a non-obvious choice that someone might "fix" by mistake.
+- Write comments in English.
 
 ### Git hooks (husky)
 
@@ -50,6 +57,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ### Styling & UI
 
 - Tailwind CSS v4 (`@tailwindcss/postcss` only — no `autoprefixer`/`postcss`, v4 uses Lightning CSS internally). Global styles live in `src/app/styles/globals.css`, which also imports `tw-animate-css` and the shadcn base stylesheet (`shadcn/tailwind.css`).
+- Theming is class-based: `next-themes` (`ThemeProvider` in `src/app/components/providers/theme-provider.tsx`, wrapping the root layout) toggles `.dark` on `<html>`, and Tailwind's `dark:` variant is bound to that class (`@custom-variant dark (&:where(.dark, .dark *))`). Light tokens live in `:root` and dark tokens in `.dark`, each with its own `color-scheme`. The first visit follows the system preference; a chosen theme persists in `localStorage` (`theme`). Never style against `prefers-color-scheme` directly.
 - **shadcn/ui** (`components.json`, style `base-nova`, base color `neutral`, icon library `lucide`): `Button` and `Card` are in place so far (`src/app/components/ui/shadcn/{button,card}.tsx`). Add components with `pnpm shadcn:add <name>` (wraps `pnpm dlx shadcn@latest add`) — aliases and target paths are in `components.json`.
 - Links that need to look like a `Button` (e.g. external CTAs) must stay plain `<a>`/`Link` elements styled with the exported `buttonVariants(...)` helper, not `Button` itself — Base UI's `Button` enforces button semantics (`role="button"`, keyboard handling) and its own docs say not to render links through it.
 - Supporting libs: `@base-ui/react` (headless primitives), `class-variance-authority` for variant styling, `cn` for the `cn()` class-merging helper (re-exported from `src/app/lib/utils.ts`), `lucide-react` for icons. Before wiring up a Base UI primitive, check its docs in `node_modules/@base-ui/react/docs/react/` (`components/`, `utils/`, `handbook/`) for its semantics/keyboard behavior — component APIs there may differ from other headless UI kits.
