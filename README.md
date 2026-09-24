@@ -40,7 +40,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 
 ### Project structure
 
-- `src/app` holds frontend-exclusive code only. Routes live in the `src/app/(pages)` route group (which does not affect the URL), and shared code lives in `src/app/components` and `src/app/lib`, each re-exported through an `index.ts` barrel.
+- `src/app` holds frontend-exclusive code only. Routes live in the `src/app/(pages)` route group (which does not affect the URL), shared components live in `src/app/components` and future hooks/utils in `src/app/lib`. There are no `index.ts` barrels: modules are imported directly from their files through the `@/` alias.
 - Components are grouped by role: `ui/` for visual building blocks and `providers/` for context providers.
 - Global styles moved to `src/app/styles/globals.css`.
 - Anything that is not frontend-exclusive, such as `src/tests`, sits directly under `src`, as a sibling of `app`.
