@@ -94,7 +94,7 @@ Open a pull request against `main` (`gh pr create` or the GitHub UI):
 ## 9. Merge and close
 
 1. In the issue, tick every completed checklist item (`- [x]`). Do not close an issue with unchecked items unless they were dropped or moved, and say so in a comment.
-2. Merge with **Rebase and merge**, which keeps each commit and a linear history (CI lints every commit of the PR).
+2. Merge with **Create a merge commit** (or **Rebase and merge**). Both keep every commit of the pull request as it was linted by CI. The merge commit itself (`Merge pull request #...`) is created on `main` after CI runs, so it is never checked by `commitlint` and does not need to follow the Commit Rules.
 3. Delete the branch, then update the local `main`:
 
    ```bash

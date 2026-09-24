@@ -34,7 +34,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 ### Tooling
 
 - **Package manager:** pnpm only. Versions in `dependencies` and `devDependencies` are pinned exact (install with `pnpm add -E <pkg>`).
-- **Node:** version pinned in `.nvmrc` (`lts/krypton`).
+- **Node:** version pinned in `.nvmrc` (`lts/krypton`) and, for Vercel, in `engines.node` (`24.x`) in `package.json`.
 - **React Compiler:** enabled via `reactCompiler: true` in `next.config.ts`.
 - **Path alias:** `@/*` resolves to `src/*`.
 

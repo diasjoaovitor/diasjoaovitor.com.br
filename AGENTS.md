@@ -15,7 +15,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Use **pnpm** only (not npm/yarn).
 - Versions are pinned exact (no `^`/`~`) only for `dependencies` and `devDependencies` in `package.json`, no exceptions there. Install new deps with `pnpm add -E <pkg>` (or `pnpm add -D -E <pkg>` for dev deps) — never hand-edit version strings.
 - The exact-version rule does not apply to MCP servers (`.mcp.json`) or `package.json` scripts, which may use `@latest` (e.g. `pnpm dlx shadcn@latest`, `pnpm dlx @playwright/mcp@latest`). They must still run through pnpm, never `npx`.
-- Node version is pinned in `.nvmrc` (`lts/krypton`).
+- Node version is pinned in `.nvmrc` (`lts/krypton`) for local use and in `engines.node` (`24.x`) in `package.json` for Vercel, which ignores `.nvmrc`. Keep both on the same major.
+- On Vercel, the `ENABLE_EXPERIMENTAL_COREPACK=1` environment variable (Production and Preview) makes the build use the exact pnpm version from `packageManager`; without it Vercel picks pnpm from the lockfile version.
 - `@/*` resolves to `src/*` (`tsconfig.json`).
 
 ### Project structure
