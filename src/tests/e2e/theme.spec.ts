@@ -50,3 +50,26 @@ test.describe('chosen theme', () => {
       .toMatch(/\bdark\b/)
   })
 })
+
+test.describe('theme toggle', () => {
+  test.use({ colorScheme: 'light' })
+
+  test('switches the theme from the keyboard and persists it', async ({
+    page
+  }) => {
+    await page.goto('/')
+    const toDark = page.getByRole('button', { name: 'Ativar tema escuro' })
+    await toDark.focus()
+    await page.keyboard.press('Enter')
+
+    await expect(html(page)).toHaveClass(/\bdark\b/)
+    await expect(html(page)).toHaveCSS('color-scheme', 'dark')
+
+    await page.reload()
+    await expect(html(page)).toHaveClass(/\bdark\b/)
+
+    await page.getByRole('button', { name: 'Ativar tema claro' }).click()
+    await expect(html(page)).toHaveClass(/\blight\b/)
+    await expect(html(page)).toHaveCSS('color-scheme', 'light')
+  })
+})

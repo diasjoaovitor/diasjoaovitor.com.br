@@ -24,7 +24,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Anything that isn't frontend-exclusive (e.g. `src/tests`, and any future non-frontend folder) lives directly under `src`, as a sibling of `app`, not nested inside it.
 - Routes are grouped under `src/app/(pages)` (a route group, so it doesn't affect the URL).
 - Shared frontend code lives in `src/app/components`, and hooks/utils in `src/app/lib` (created with the first helper; the shadcn `lib`/`utils` aliases in `components.json` already point there). There are no `index.ts` barrels: import each module directly from its file through the `@/` alias (e.g. `@/app/components/ui/shadcn/button`). Barrels caused circular imports, gave two import paths for the same module and made Vite/Vitest load every re-exported module.
-- `src/app/components` groups components by role: `ui/` for visual building blocks (shadcn ones under `ui/shadcn/`) and `providers/` for context providers without UI of their own (e.g. `ThemeProvider`).
+- `src/app/components` groups components by role: `ui/` for visual building blocks (shadcn ones under `ui/shadcn/`), `providers/` for context providers without UI of their own (e.g. `ThemeProvider`) and `layouts/` for page shells (e.g. `AppLayout`).
+- A layout lives in its own folder (`layouts/<name>/index.tsx`), with the parts only it uses in a private `_components/` folder next to it. Code outside the layout imports only `layouts/<name>`, never its `_components/`.
 - `favicon.ico` stays directly in `src/app/`, not nested in a route group.
 - React Compiler is enabled (`reactCompiler: true` in `next.config.ts`, `babel-plugin-react-compiler` devDependency).
 
