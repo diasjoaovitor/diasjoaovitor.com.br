@@ -15,7 +15,7 @@ The one addition is a teal `primary` hue, used as the site's single accent color
 
 `primary-foreground` keeps the scaffold's existing neutral values (near-white in light, near-black in dark).
 
-**Usage:** `primary` is the only accent — active/hover link color, primary button backgrounds, and (through `ring`) the visible focus outline and other interactive borders. Every other token (background, card, popover, secondary, muted, accent, destructive, chart colors, sidebar tokens) stays the shadcn `neutral` scaffold as-is.
+**Usage:** `primary` is the only accent — active/hover link color, primary button backgrounds, and (through `ring`) the visible focus outline and other interactive borders. The dividers that frame the app layout (the header's bottom and the footer's top border) use Tailwind's `teal-950` (`oklch(27.7% 0.046 192.524)`, `border-teal-950`) in the light theme: a darker shade of the accent hue that marks the layout edges without competing with `primary`. In the dark theme they fall back to the neutral `border` token (`dark:border-border`), since `teal-950` nearly disappears on the dark background. The `border` token itself stays neutral, so cards, inputs and outline buttons keep their neutral edges. Every other token (background, card, popover, secondary, muted, accent, destructive, chart colors, sidebar tokens) stays the shadcn `neutral` scaffold as-is.
 
 **Contrast (WCAG):**
 
@@ -30,6 +30,7 @@ Keep the scaffold: **Geist Sans** for body copy and UI, **Geist Mono** for code 
 
 - **Spacing:** Tailwind's default scale (4px base unit). No custom scale.
 - **Radius:** keep the scaffold default, `--radius: 0.625rem` (10px), applied through the existing `--radius-sm` … `--radius-4xl` scale in `globals.css`.
+- **Layout widths:** the header and footer content spans `max-w-4xl` (896px), and the page content in `Main` is narrower, `max-w-3xl` (768px), so the frame is wider than what it holds.
 - **Reading width:** long-form content (blog posts) uses a `max-w-[65ch]` container — inside the 45–75 character range considered comfortable for reading, on the tighter, denser side.
 
 ## Tone
