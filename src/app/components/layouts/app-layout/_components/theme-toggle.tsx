@@ -30,7 +30,7 @@ export const ThemeToggle = () => {
   return (
     <Button
       variant="ghost"
-      size="icon-lg"
+      size="icon"
       aria-label={label}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
