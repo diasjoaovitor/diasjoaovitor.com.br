@@ -8,7 +8,7 @@ export const SkillMarquee = () => (
     <TerminalCommand
       as="h2"
       id="skills-heading"
-      aria-label="skills"
+      label="skills"
       command="ls ~/skills"
     />
     {/* Marquee renders its children several times, so assistive tech and reduced motion get this single list instead */}
@@ -34,7 +34,7 @@ export const SkillMarquee = () => (
           key={label}
           className="flex gap-2 text-muted-foreground transition-colors hover:text-primary"
         >
-          <Icon />
+          <Icon title="" />
           <span className="font-mono">{label}</span>
         </div>
       ))}
