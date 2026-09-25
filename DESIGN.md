@@ -8,10 +8,12 @@ Base palette: the shadcn/ui scaffold defaults (`base-nova` style, `neutral` base
 
 The one addition is a teal `primary` hue, used as the site's single accent color:
 
-| Token     | Light                                      | Dark                                       |
-| --------- | ------------------------------------------ | ------------------------------------------ |
-| `primary` | `oklch(0.511 0.086 186.391)` (≈ `#0f766e`) | `oklch(0.785 0.133 181.912)` (≈ `#2dd4bf`) |
-| `ring`    | same value as `primary`                    | same value as `primary`                    |
+| Token     | Light                                                | Dark                                                 |
+| --------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `primary` | `oklch(0.511 0.096 186.391)` (Tailwind's `teal-700`) | `oklch(0.777 0.152 181.912)` (Tailwind's `teal-400`) |
+| `ring`    | same value as `primary`                              | same value as `primary`                              |
+
+Both values are copied exactly from Tailwind's default palette (`node_modules/tailwindcss/theme.css`), so `primary` and the `teal-*` utilities used elsewhere in the layout stay on the same scale.
 
 `primary-foreground` keeps the scaffold's existing neutral values (near-white in light, near-black in dark).
 
@@ -19,8 +21,8 @@ The one addition is a teal `primary` hue, used as the site's single accent color
 
 **Contrast (WCAG):**
 
-- Light — `primary-foreground` on `primary`: 5.47:1 (passes AA for normal text).
-- Dark — `primary-foreground` on `primary`: 7.88:1 (passes AA for normal text).
+- Light — `primary-foreground` on `primary`: 5.16:1 (passes AA for normal text).
+- Dark — `primary-foreground` on `primary`: 9.60:1 (passes AA for normal text).
 
 ## Typography
 
