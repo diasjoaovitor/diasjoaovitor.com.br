@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://diasjoaovitor.com.br'),
   title: 'João Vitor — Desenvolvedor Fullstack',
   description:
     'Anotações técnicas sobre desenvolvimento fullstack, escritas por João Vitor.'
@@ -28,7 +29,7 @@ const RootLayout = ({ children }: LayoutProps<'/'>) => (
     className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     suppressHydrationWarning
   >
-    <body className="flex min-h-full flex-col">
+    <body className="relative flex min-h-full flex-col">
       <ThemeProvider>
         <AppLayout>{children}</AppLayout>
       </ThemeProvider>
