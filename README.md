@@ -40,7 +40,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 
 ### Project structure
 
-- `src/app` holds frontend-exclusive code only. Routes live in the `src/app/(pages)` route group (which does not affect the URL), shared components live in `src/app/components` and future hooks/utils in `src/app/lib`. There are no `index.ts` barrels: modules are imported directly from their files through the `@/` alias.
+- `src/app` holds frontend-exclusive code only. Routes live in the `src/app/(pages)` route group (which does not affect the URL), shared components live in `src/app/components`, React hooks in `src/app/hooks` and future helpers in `src/app/lib`. There are no `index.ts` barrels: modules are imported directly from their files through the `@/` alias.
 - Components are grouped by role: `ui/` for visual building blocks, `providers/` for context providers and `layouts/` for page shells, whose private parts live in a `_components/` folder next to them.
 - Global styles moved to `src/app/styles/globals.css`.
 - Anything that is not frontend-exclusive, such as `src/tests`, sits directly under `src`, as a sibling of `app`.
@@ -49,7 +49,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 
 - **Tailwind CSS v4** through `@tailwindcss/postcss`.
 - **Light and dark themes** via `next-themes`: a `.dark` class on `<html>` drives the `dark:` variant and the dark tokens. The first visit follows the system preference and a chosen theme persists across visits.
-- **shadcn/ui** (style `base-nova`, base color `neutral`, `lucide` icons) on top of [Base UI](https://base-ui.com), with `class-variance-authority` and a `cn()` helper. Components land in `src/app/components/ui/shadcn/`; add more with `pnpm shadcn:add <name>`.
+- **shadcn/ui** (style `base-nova`, base color `neutral`, `lucide` icons) on top of [Base UI](https://base-ui.com), with `class-variance-authority` and a `cn()` helper. Components land in `src/app/components/ui/shadcn/`; add more with `pnpm shadcn:add <name>`. Animated components from [Magic UI](https://magicui.design) (`@magicui` registry) land in `src/app/components/ui/magicui/`.
 
 ### Linting and formatting
 

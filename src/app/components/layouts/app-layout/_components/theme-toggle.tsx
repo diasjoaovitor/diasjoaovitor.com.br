@@ -4,8 +4,7 @@ import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 
 import { Button } from '@/app/components/ui/shadcn/button'
-
-import { useIsHydrated } from './use-is-hydrated'
+import { useIsHydrated } from '@/app/hooks/use-is-hydrated'
 
 export const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme()
