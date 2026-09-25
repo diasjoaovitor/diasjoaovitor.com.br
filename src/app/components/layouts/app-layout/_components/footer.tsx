@@ -26,7 +26,7 @@ const contactLinks = [
 ]
 
 export const Footer = () => (
-  <footer className="border-t border-teal-950 text-xs text-muted-foreground dark:border-border">
+  <footer className="border-t border-teal-500 text-xs text-muted-foreground dark:border-teal-950">
     <div className="mx-auto flex max-w-4xl flex-col items-center gap-2 px-4 py-2 sm:flex-row sm:justify-between">
       <p>
         &copy; <CurrentYear /> diasjoaovitor.com.br
@@ -40,7 +40,7 @@ export const Footer = () => (
                 href={href}
                 className={cn(
                   buttonVariants({ variant: 'link' }),
-                  'text-xs text-muted-foreground transition-colors hover:text-primary'
+                  'text-xs text-foreground transition-colors hover:text-primary dark:text-muted-foreground'
                 )}
               >
                 {/* SiGithub always renders a title, which shows a tooltip duplicating the visible label */}

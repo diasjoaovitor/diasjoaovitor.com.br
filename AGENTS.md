@@ -85,7 +85,7 @@ Before closing an issue, tick every completed checklist item (`- [x]`) in its bo
 
 ## Commit Rules
 
-Never run `git commit` on your own, even in auto/agentic mode — always suggest the commit (show the proposed message) and wait for explicit approval before actually creating it.
+Never run `git commit` on your own, even in auto/agentic mode. Only propose a commit message when the user asks for one, and create the commit only after explicit approval of that message.
 
 Commit messages must be in English and follow this format:
 

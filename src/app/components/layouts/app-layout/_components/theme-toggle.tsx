@@ -2,26 +2,18 @@
 
 import { Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import { useSyncExternalStore } from 'react'
 
 import { Button } from '@/app/components/ui/shadcn/button'
 
-const noop = () => {}
-const subscribe = () => noop
-
-// next-themes only knows the resolved theme on the client, so the label waits
-// for hydration to avoid a server/client mismatch
-// (https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch)
-const useIsHydrated = () =>
-  useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  )
+import { useIsHydrated } from './use-is-hydrated'
 
 export const ThemeToggle = () => {
   const { resolvedTheme, setTheme } = useTheme()
+  // next-themes only knows the resolved theme on the client, so the label waits
+  // for hydration to avoid a server/client mismatch
+  // (https://github.com/pacocoursey/next-themes#avoid-hydration-mismatch)
   const isHydrated = useIsHydrated()
+
   const isDark = resolvedTheme === 'dark'
 
   const actionLabel = isDark ? 'Ativar tema claro' : 'Ativar tema escuro'
@@ -30,7 +22,7 @@ export const ThemeToggle = () => {
   return (
     <Button
       variant="ghost"
-      size="icon-lg"
+      size="icon"
       aria-label={label}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >

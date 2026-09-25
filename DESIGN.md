@@ -8,23 +8,33 @@ Base palette: the shadcn/ui scaffold defaults (`base-nova` style, `neutral` base
 
 The one addition is a teal `primary` hue, used as the site's single accent color:
 
-| Token     | Light                                      | Dark                                       |
-| --------- | ------------------------------------------ | ------------------------------------------ |
-| `primary` | `oklch(0.511 0.086 186.391)` (≈ `#0f766e`) | `oklch(0.785 0.133 181.912)` (≈ `#2dd4bf`) |
-| `ring`    | same value as `primary`                    | same value as `primary`                    |
+| Token     | Light                                                | Dark                                                 |
+| --------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `primary` | `oklch(0.511 0.096 186.391)` (Tailwind's `teal-700`) | `oklch(0.777 0.152 181.912)` (Tailwind's `teal-400`) |
+| `ring`    | same value as `primary`                              | same value as `primary`                              |
+
+Both values are copied exactly from Tailwind's default palette (`node_modules/tailwindcss/theme.css`), so `primary` and the `teal-*` utilities used elsewhere in the layout stay on the same scale.
 
 `primary-foreground` keeps the scaffold's existing neutral values (near-white in light, near-black in dark).
 
-**Usage:** `primary` is the only accent — active/hover link color, primary button backgrounds, and (through `ring`) the visible focus outline and other interactive borders. The dividers that frame the app layout (the header's bottom and the footer's top border) use Tailwind's `teal-950` (`oklch(27.7% 0.046 192.524)`, `border-teal-950`) in the light theme: a darker shade of the accent hue that marks the layout edges without competing with `primary`. In the dark theme they fall back to the neutral `border` token (`dark:border-border`), since `teal-950` nearly disappears on the dark background. The `border` token itself stays neutral, so cards, inputs and outline buttons keep their neutral edges. Every other token (background, card, popover, secondary, muted, accent, destructive, chart colors, sidebar tokens) stays the shadcn `neutral` scaffold as-is.
+**Usage:** `primary` is the only accent — active/hover link color, primary button backgrounds, and (through `ring`) the visible focus outline and other interactive borders. The dividers that frame the app layout (the header's bottom and the footer's top border) use shades of the accent hue from Tailwind's palette instead of `primary` itself: `teal-500` (`oklch(70.4% 0.14 182.503)`, `border-teal-500`) in the light theme and `teal-950` (`oklch(27.7% 0.046 192.524)`, `dark:border-teal-950`) in the dark theme, so they mark the layout edges without competing with `primary`. The `border` token itself stays neutral, so cards, inputs and outline buttons keep their neutral edges. Every other token (background, card, popover, secondary, muted, accent, destructive, chart colors, sidebar tokens) stays the shadcn `neutral` scaffold as-is.
 
 **Contrast (WCAG):**
 
-- Light — `primary-foreground` on `primary`: 5.47:1 (passes AA for normal text).
-- Dark — `primary-foreground` on `primary`: 7.88:1 (passes AA for normal text).
+- Light — `primary-foreground` on `primary`: 5.16:1 (passes AA for normal text).
+- Dark — `primary-foreground` on `primary`: 9.60:1 (passes AA for normal text).
 
 ## Typography
 
 Keep the scaffold: **Geist Sans** for body copy and UI, **Geist Mono** for code and metadata (dates, tags). `--font-heading` stays aliased to `--font-sans` — no separate display face. The teal accent and layout carry the personality, not the typeface.
+
+## Brand
+
+Decided in issue #21: the header brand is text, not an image logo — the name written as a self-closing JSX tag, `<João Vitor/>`, linking to `/`. A text brand needs no asset to keep in sync with the two themes, and the JSX tag says "developer" without extra copy.
+
+- Set in **Geist Mono**, `tracking-tight`, at the body size and weight, in the `foreground` color in the light theme and `muted-foreground` in the dark theme.
+- The `<` and `/>` characters use `teal-700` in both themes (`text-primary dark:text-teal-700`): the light `primary` value, kept in the dark theme too instead of switching to the brighter dark `primary` (`teal-400`).
+- The brackets are `aria-hidden`, so the link's accessible name is just "João Vitor" instead of "less than João Vitor slash greater than".
 
 ## Layout principles
 
