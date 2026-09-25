@@ -28,6 +28,14 @@ Both values are copied exactly from Tailwind's default palette (`node_modules/ta
 
 Keep the scaffold: **Geist Sans** for body copy and UI, **Geist Mono** for code and metadata (dates, tags). `--font-heading` stays aliased to `--font-sans` — no separate display face. The teal accent and layout carry the personality, not the typeface.
 
+## Brand
+
+Decided in issue #21: the header brand is text, not an image logo — the name written as a self-closing JSX tag, `<João Vitor/>`, linking to `/`. A text brand needs no asset to keep in sync with the two themes, and the JSX tag says "developer" without extra copy.
+
+- Set in **Geist Mono**, `tracking-tight`, at the body size and weight, in the `foreground` color in the light theme and `muted-foreground` in the dark theme.
+- The `<` and `/>` characters use `teal-700` in both themes (`text-primary dark:text-teal-700`): the light `primary` value, kept in the dark theme too instead of switching to the brighter dark `primary` (`teal-400`).
+- The brackets are `aria-hidden`, so the link's accessible name is just "João Vitor" instead of "less than João Vitor slash greater than".
+
 ## Layout principles
 
 - **Spacing:** Tailwind's default scale (4px base unit). No custom scale.
