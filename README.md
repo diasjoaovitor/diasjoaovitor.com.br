@@ -49,7 +49,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 
 - **Tailwind CSS v4** through `@tailwindcss/postcss`.
 - **Light and dark themes** via `next-themes`: a `.dark` class on `<html>` drives the `dark:` variant and the dark tokens. The first visit follows the system preference and a chosen theme persists across visits.
-- **shadcn/ui** (style `base-nova`, base color `neutral`, `lucide` icons) on top of [Base UI](https://base-ui.com), with `class-variance-authority` and a `cn()` helper. Components land in `src/app/components/ui/shadcn/`; add more with `pnpm shadcn:add <name>`.
+- **shadcn/ui** (style `base-nova`, base color `neutral`, `lucide` icons) on top of [Base UI](https://base-ui.com), with `class-variance-authority` and a `cn()` helper. Components land in `src/app/components/ui/shadcn/`; add more with `pnpm shadcn:add <name>`. Animated components from [Magic UI](https://magicui.design) (`@magicui` registry) land in `src/app/components/ui/magicui/`.
 
 ### Linting and formatting
 
