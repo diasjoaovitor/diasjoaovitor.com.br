@@ -1,5 +1,6 @@
 import Link from 'next/link'
 
+import { Nav } from './nav'
 import { ThemeToggle } from './theme-toggle'
 
 export const Header = () => (
@@ -18,7 +19,10 @@ export const Header = () => (
           /&gt;
         </span>
       </Link>
-      <ThemeToggle />
+      <div className="flex items-center gap-2">
+        <Nav />
+        <ThemeToggle />
+      </div>
     </div>
   </header>
 )
