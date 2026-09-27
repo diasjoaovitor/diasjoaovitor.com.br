@@ -1,6 +1,5 @@
 'use client'
 
-import { cn } from 'cn'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
@@ -23,7 +22,7 @@ export const Nav = () => {
   const pathname = usePathname()
 
   return (
-    <nav className="flex items-center gap-4 font-mono">
+    <nav aria-label="Principal" className="flex items-center gap-4 font-mono">
       {navLinks.map(({ href, label }) => {
         const isActive = isNavLinkActive(pathname, href)
         return (
@@ -31,10 +30,7 @@ export const Nav = () => {
             key={href}
             href={href}
             aria-current={isActive ? 'page' : undefined}
-            className={cn(
-              'py-1 outline-hidden transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring',
-              isActive ? 'text-primary' : 'text-muted-foreground'
-            )}
+            className="py-1 text-muted-foreground underline-offset-4 outline-hidden transition-colors hover:text-primary focus-visible:ring-3 focus-visible:ring-ring aria-[current=page]:text-primary aria-[current=page]:underline"
           >
             {label}
           </Link>
