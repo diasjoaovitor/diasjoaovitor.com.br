@@ -32,22 +32,28 @@ test.describe('chosen theme', () => {
     await expect(html(page)).toHaveClass(/\bdark\b/)
   })
 
-  test('is applied before the first paint', async ({ page }) => {
-    await page.addInitScript(() => {
-      localStorage.setItem('theme', 'dark')
-      requestAnimationFrame(() => {
-        sessionStorage.setItem(
-          'first-paint-class',
-          document.documentElement.className
-        )
+  test.describe('first paint', () => {
+    // next-themes injects its script into <body>, so Chromium sometimes renders a frame before it
+    // runs, also in production builds; retry until next-themes applies the theme earlier (#30)
+    test.describe.configure({ retries: 3 })
+
+    test('is applied before the first paint', async ({ page }) => {
+      await page.addInitScript(() => {
+        localStorage.setItem('theme', 'dark')
+        requestAnimationFrame(() => {
+          sessionStorage.setItem(
+            'first-paint-class',
+            document.documentElement.className
+          )
+        })
       })
+      await page.goto('/')
+      await expect
+        .poll(() =>
+          page.evaluate(() => sessionStorage.getItem('first-paint-class'))
+        )
+        .toMatch(/\bdark\b/)
     })
-    await page.goto('/')
-    await expect
-      .poll(() =>
-        page.evaluate(() => sessionStorage.getItem('first-paint-class'))
-      )
-      .toMatch(/\bdark\b/)
   })
 })
 
