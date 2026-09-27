@@ -1,11 +1,11 @@
 import { defineCollection, defineConfig } from '@content-collections/core'
-import { compileMDX } from '@content-collections/mdx'
+import { compileMarkdown } from '@content-collections/markdown'
 import { z } from 'zod'
 
 const posts = defineCollection({
   name: 'posts',
   directory: 'content/posts',
-  include: '*.mdx',
+  include: '*.md',
   schema: z.object({
     title: z.string(),
     summary: z.string(),
@@ -15,10 +15,10 @@ const posts = defineCollection({
     content: z.string()
   }),
   transform: async (document, context) => {
-    const mdx = await compileMDX(context, document)
+    const html = await compileMarkdown(context, document)
     return {
       ...document,
-      mdx
+      html
     }
   }
 })

@@ -23,7 +23,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `src/app` holds frontend-exclusive content only — there's no top-level `src/components` or `src/lib`, that shared code lives under `src/app` instead.
 - Anything that isn't frontend-exclusive (e.g. `src/tests`, and any future non-frontend folder) lives directly under `src`, as a sibling of `app`, not nested inside it.
-- Exception: blog content (MDX with YAML frontmatter) lives in `content/` at the repository root (posts in `content/posts`), outside `src`, because it's data rather than code.
+- Exception: blog content (Markdown with YAML frontmatter) lives in `content/` at the repository root (posts in `content/posts`), outside `src`, because it's data rather than code.
 - Routes are grouped under `src/app/(pages)` (a route group, so it doesn't affect the URL).
 - Shared frontend code lives in `src/app/components`, React hooks in `src/app/hooks` (e.g. `useIsHydrated`) and other helpers in `src/app/lib` (created with the first helper), matching the shadcn `hooks`/`lib`/`utils` aliases in `components.json`. There are no `index.ts` barrels: import each module directly from its file through the `@/` alias (e.g. `@/app/components/ui/shadcn/button`). Barrels caused circular imports, gave two import paths for the same module and made Vite/Vitest load every re-exported module.
 - `src/app/components` groups components by role: `ui/` for visual building blocks (shadcn ones under `ui/shadcn/`, Magic UI ones under `ui/magicui/`, our own under `ui/custom/`, e.g. `TerminalCommand`), `providers/` for context providers without UI of their own (e.g. `ThemeProvider`) and `layouts/` for page shells (e.g. `AppLayout`).
@@ -33,15 +33,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Blog content
 
-- The blog uses **Content Collections** (`@content-collections/core`, `@content-collections/next`, `@content-collections/mdx`), not `@next/mdx`. Collections are defined in `content-collections.ts` at the repository root, with `zod` schemas. Posts are compiled with `compileMDX` in the collection `transform`.
+- The blog uses **Content Collections** (`@content-collections/core`, `@content-collections/next`, `@content-collections/markdown`), not `@next/mdx`. Collections are defined in `content-collections.ts` at the repository root, with `zod` schemas. Posts are compiled to HTML with `compileMarkdown` in the collection `transform`.
+- Posts are plain Markdown (`.md`), not MDX: none needed JSX, and MDX can't be linted by `@eslint/markdown` (see #28). If a post ever needs a React component, going back to MDX is a deliberate decision, not a quick fix.
 - Use the `content` key in `defineConfig` and declare `content` explicitly in the schema: the `collections` key and the implicit `content` property are deprecated (https://content-collections.dev/docs/deprecations/implicit-content-property).
 - `withContentCollections` must stay the outermost wrapper in `next.config.ts`. It generates `.content-collections/` (git-, ESLint- and Prettier-ignored) on `next dev`, `next build` and `next typegen` (so `pnpm type-check` too), imported through the `content-collections` alias in `tsconfig.json`.
 - Frontmatter fields: `title`, `summary`, `date` (`YYYY-MM-DD`, coerced to a `Date`), `author` and `draft` (defaults to `false`).
-- `esbuild` (used by `@content-collections/mdx`) is listed as `false` in `allowBuilds` (`pnpm-workspace.yaml`): its binary comes from the platform optional dependency, so the install script isn't needed.
+- `esbuild` (used by `@content-collections/core`) is listed as `false` in `allowBuilds` (`pnpm-workspace.yaml`): its binary comes from the platform optional dependency, so the install script isn't needed.
 
 ### Linting & formatting
 
-- ESLint uses native flat config (`eslint.config.mjs`), extending the `core-web-vitals`/`typescript` configs from `eslint-config-next`, plus `eslint-plugin-unicorn`, `eslint-plugin-simple-import-sort`, `eslint-plugin-tailwindcss`, `eslint-plugin-promise`, `eslint-plugin-prefer-arrow-functions`, `eslint-config-prettier`, and `@eslint/json`/`@eslint/markdown` for JSON/Markdown files. `eslint-plugin-tailwindcss` rule docs are in `node_modules/eslint-plugin-tailwindcss/docs/rules/` — check there before overriding a Tailwind lint rule.
+- ESLint uses native flat config (`eslint.config.mjs`), extending the `core-web-vitals`/`typescript` configs from `eslint-config-next`, plus `eslint-plugin-unicorn`, `eslint-plugin-simple-import-sort`, `eslint-plugin-tailwindcss`, `eslint-plugin-promise`, `eslint-plugin-prefer-arrow-functions`, `eslint-config-prettier`, and `@eslint/json`/`@eslint/markdown` for JSON/Markdown files (blog posts included). Markdown files use `frontmatter: 'yaml'`, so the frontmatter of posts and issue templates isn't parsed as Markdown. `eslint-plugin-tailwindcss` rule docs are in `node_modules/eslint-plugin-tailwindcss/docs/rules/` — check there before overriding a Tailwind lint rule.
 - Use `pnpm eslint:check` / `pnpm eslint:fix` and `pnpm prettier:check` / `pnpm prettier:fix`.
 - Prettier style: single quotes, no semicolons, no trailing commas (`.prettierrc`).
 - Base indentation/whitespace rules (2 spaces, LF, trim trailing whitespace, final newline) are enforced editor-side via `.editorconfig`.
@@ -92,6 +93,10 @@ Examples: `feat/home-page#3`, `fix(card)/focus-ring#7`. Parentheses and `#` are 
 ## Issue Rules
 
 Before closing an issue, tick every completed checklist item (`- [x]`) in its body, e.g. with `gh issue edit <number> --body-file <file>`. Don't close an issue that still has unchecked items unless they were dropped or moved, and say so in the closing comment.
+
+## Task Rules
+
+Never start working on a task on your own, even when asked to move on to the next one or in auto/agentic mode. First present a summary of the plan (the issue, branch name, steps, files touched and any open decisions) and wait for explicit approval before creating the branch, installing dependencies or editing code. Read-only investigation (issues, docs, code) needs no approval.
 
 ## Commit Rules
 

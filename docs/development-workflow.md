@@ -40,6 +40,8 @@ Then:
 
 Take the next open issue of the current milestone whose dependencies (the `Depends on ...` lines in Notes) are already closed. Read the whole issue, including Notes, before starting.
 
+When an AI agent picks the issue, it presents a summary of the plan (branch, steps, files and open decisions) and waits for explicit approval before changing anything (see Task Rules in [`AGENTS.md`](../AGENTS.md)).
+
 ## 4. Create a branch
 
 Never work on `main`. Branch names follow `<scope>/<title>#<issue>`, or `<scope>(<target>)/<title>#<issue>` for very specific work (see Branch Rules in [`AGENTS.md`](../AGENTS.md)). Quote the name, since `(` and `#` are special characters in shells:

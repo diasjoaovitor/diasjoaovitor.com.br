@@ -44,7 +44,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 - Components are grouped by role: `ui/` for visual building blocks, `providers/` for context providers and `layouts/` for page shells, whose private parts live in a `_components/` folder next to them.
 - Global styles moved to `src/app/styles/globals.css`.
 - Anything that is not frontend-exclusive, such as `src/tests`, sits directly under `src`, as a sibling of `app`.
-- Blog posts are MDX files with YAML frontmatter in `content/posts`, at the repository root, loaded and typed at build time by [Content Collections](https://www.content-collections.dev) (`content-collections.ts`).
+- Blog posts are Markdown files with YAML frontmatter in `content/posts`, at the repository root, loaded and typed at build time by [Content Collections](https://www.content-collections.dev) (`content-collections.ts`).
 
 ### Styling and UI
 
