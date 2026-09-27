@@ -23,12 +23,21 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `src/app` holds frontend-exclusive content only — there's no top-level `src/components` or `src/lib`, that shared code lives under `src/app` instead.
 - Anything that isn't frontend-exclusive (e.g. `src/tests`, and any future non-frontend folder) lives directly under `src`, as a sibling of `app`, not nested inside it.
+- Exception: blog content (MDX with YAML frontmatter) lives in `content/` at the repository root (posts in `content/posts`), outside `src`, because it's data rather than code.
 - Routes are grouped under `src/app/(pages)` (a route group, so it doesn't affect the URL).
 - Shared frontend code lives in `src/app/components`, React hooks in `src/app/hooks` (e.g. `useIsHydrated`) and other helpers in `src/app/lib` (created with the first helper), matching the shadcn `hooks`/`lib`/`utils` aliases in `components.json`. There are no `index.ts` barrels: import each module directly from its file through the `@/` alias (e.g. `@/app/components/ui/shadcn/button`). Barrels caused circular imports, gave two import paths for the same module and made Vite/Vitest load every re-exported module.
 - `src/app/components` groups components by role: `ui/` for visual building blocks (shadcn ones under `ui/shadcn/`, Magic UI ones under `ui/magicui/`, our own under `ui/custom/`, e.g. `TerminalCommand`), `providers/` for context providers without UI of their own (e.g. `ThemeProvider`) and `layouts/` for page shells (e.g. `AppLayout`).
 - A layout lives in its own folder (`layouts/<name>/index.tsx`), with the parts only it uses in a private `_components/` folder next to it. Code outside the layout imports only `layouts/<name>`, never its `_components/`.
 - `favicon.ico` stays directly in `src/app/`, not nested in a route group.
 - React Compiler is enabled (`reactCompiler: true` in `next.config.ts`, `babel-plugin-react-compiler` devDependency).
+
+### Blog content
+
+- The blog uses **Content Collections** (`@content-collections/core`, `@content-collections/next`, `@content-collections/mdx`), not `@next/mdx`. Collections are defined in `content-collections.ts` at the repository root, with `zod` schemas. Posts are compiled with `compileMDX` in the collection `transform`.
+- Use the `content` key in `defineConfig` and declare `content` explicitly in the schema: the `collections` key and the implicit `content` property are deprecated (https://content-collections.dev/docs/deprecations/implicit-content-property).
+- `withContentCollections` must stay the outermost wrapper in `next.config.ts`. It generates `.content-collections/` (git-, ESLint- and Prettier-ignored) on `next dev`, `next build` and `next typegen` (so `pnpm type-check` too), imported through the `content-collections` alias in `tsconfig.json`.
+- Frontmatter fields: `title`, `summary`, `date` (`YYYY-MM-DD`, coerced to a `Date`), `author` and `draft` (defaults to `false`).
+- `esbuild` (used by `@content-collections/mdx`) is listed as `false` in `allowBuilds` (`pnpm-workspace.yaml`): its binary comes from the platform optional dependency, so the install script isn't needed.
 
 ### Linting & formatting
 
