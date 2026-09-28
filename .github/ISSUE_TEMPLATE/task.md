@@ -10,7 +10,7 @@ title: ''
 
 ## Tasks
 
-<!-- One verifiable deliverable per checklist item, for example `- [ ] Create the header component`. Use `code` for routes, files and components. -->
+<!-- One verifiable deliverable per checklist item, for example `- [ ] Create the header component`. Use `code` for routes, files and components. Ask only for tests of our own logic, not of library or framework behavior. -->
 
 ## Notes
 
