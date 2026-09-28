@@ -4,9 +4,9 @@ const noop = () => {}
 
 const subscribe = () => noop
 
+const getSnapshot = () => true
+
+const getServerSnapshot = () => false
+
 export const useIsHydrated = () =>
-  useSyncExternalStore(
-    subscribe,
-    () => true,
-    () => false
-  )
+  useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)

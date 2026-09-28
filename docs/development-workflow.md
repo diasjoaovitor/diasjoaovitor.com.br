@@ -24,11 +24,11 @@ The output of that session is a set of decisions. Turn them into tasks, each one
 
 Create each task from the **Task** template (`.github/ISSUE_TEMPLATE/task.md`), in the GitHub UI or with `gh issue create`:
 
-| Section | What goes in it                                                                                                                         |
-| ------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| Context | Why the task exists and the current state. Describe the problem, not the solution.                                                      |
-| Tasks   | A checklist with one verifiable deliverable per item. Use `code` for routes, files and components.                                      |
-| Notes   | Optional. Decisions already made, what is **not** part of the issue and which issues it depends on (`Depends on ...`). Remove if empty. |
+| Section | What goes in it                                                                                                                                                      |
+| ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Context | Why the task exists and the current state. Describe the problem, not the solution.                                                                                   |
+| Tasks   | A checklist with one verifiable deliverable per item. Use `code` for routes, files and components. Ask only for tests of our own logic (see Testing in `AGENTS.md`). |
+| Notes   | Optional. Decisions already made, what is **not** part of the issue and which issues it depends on (`Depends on ...`). Remove if empty.                              |
 
 Then:
 
@@ -59,7 +59,7 @@ git switch -c 'feat(home)/hero#7'
 - Designing or reshaping UI? Use the `frontend-design` and `impeccable` skills.
 - After changing anything under `src/app/components`, `src/app/(pages)` or `src/app/styles`, run the `ui-reviewer` subagent.
 - Install dependencies with `pnpm add -E <pkg>` (or `pnpm add -D -E <pkg>`), so versions stay pinned.
-- Add or update tests alongside the code: unit tests as `src/**/*.test.{ts,tsx}` (Vitest) and end-to-end tests in `src/tests/e2e` (Playwright).
+- Add or update tests alongside the code: unit tests as `src/**/*.test.{ts,tsx}` (Vitest) and end-to-end tests in `src/tests/e2e` (Playwright). Test only our own logic (see Testing in [`AGENTS.md`](../AGENTS.md)); a task asking for any other test is dropped.
 - If the task changes a convention, update `AGENTS.md` and `README.md` in the same branch.
 
 Check locally before committing:
