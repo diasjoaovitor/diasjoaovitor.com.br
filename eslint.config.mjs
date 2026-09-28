@@ -32,6 +32,7 @@ const eslintConfig = defineConfig([
     },
     extends: ['unicorn/recommended'],
     rules: {
+      'unicorn/consistent-boolean-name': 'off',
       'unicorn/default-export-style': ['error', { functions: 'separate' }],
       'unicorn/logical-assignment-operators': 'off',
       'unicorn/no-null': 'off',
@@ -39,6 +40,7 @@ const eslintConfig = defineConfig([
         'error',
         {
           replacements: {
+            params: false,
             props: false,
             utils: false
           }
