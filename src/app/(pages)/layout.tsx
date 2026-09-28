@@ -18,7 +18,10 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://diasjoaovitor.com.br'),
-  title: 'João Vitor — Desenvolvedor Fullstack',
+  title: {
+    default: 'João Vitor — Desenvolvedor Fullstack',
+    template: '%s — João Vitor'
+  },
   description:
     'Anotações técnicas sobre desenvolvimento fullstack, escritas por João Vitor.'
 }
