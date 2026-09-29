@@ -1,7 +1,47 @@
-import { allPosts } from 'content-collections'
+import type { Metadata } from 'next'
+
+import { PostList } from '@/app/components/blocks/post/post-list'
+import { TerminalCommand } from '@/app/components/ui/custom/terminal-command'
+import { getVisiblePosts } from '@/app/helpers/posts'
+
+const title = 'Blog'
+const description =
+  'Posts sobre desenvolvimento fullstack, do mais recente ao mais antigo.'
+
+export const metadata: Metadata = {
+  title,
+  description,
+  openGraph: {
+    title,
+    description,
+    url: '/blog',
+    siteName: 'diasjoaovitor.com.br',
+    locale: 'pt_BR',
+    type: 'website'
+  }
+}
 
 const BlogPage = () => {
-  return <pre>{JSON.stringify(allPosts, null, 2)}</pre>
+  const posts = getVisiblePosts()
+
+  return (
+    <div className="flex flex-col gap-8 py-12">
+      <header className="flex flex-col gap-3">
+        <TerminalCommand command="ls ~/blog" />
+        <h1 className="flex text-4xl leading-tight font-semibold sm:text-5xl">
+          <span aria-hidden className="mr-3 text-primary">
+            &gt;
+          </span>
+          Blog
+        </h1>
+      </header>
+      {posts.length > 0 ? (
+        <PostList posts={posts} />
+      ) : (
+        <p className="text-muted-foreground">Nenhum post publicado ainda.</p>
+      )}
+    </div>
+  )
 }
 
 export default BlogPage
