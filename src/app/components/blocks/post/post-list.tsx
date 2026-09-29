@@ -1,8 +1,14 @@
 import type { Post } from 'content-collections'
 
-import { PostListItem } from './post-list-item'
+import { PostListItem, type TPostHeadingLevel } from './post-list-item'
 
-export const PostList = ({ posts }: { posts: Post[] }) => (
+export const PostList = ({
+  posts,
+  headingLevel
+}: {
+  posts: Post[]
+  headingLevel?: TPostHeadingLevel
+}) => (
   // WebKit drops list semantics when list-style is none (https://webkit.org/b/170179)
   <ul
     role="list"
@@ -10,7 +16,7 @@ export const PostList = ({ posts }: { posts: Post[] }) => (
   >
     {posts.map((post) => (
       <li key={post.slug}>
-        <PostListItem post={post} />
+        <PostListItem post={post} headingLevel={headingLevel} />
       </li>
     ))}
   </ul>

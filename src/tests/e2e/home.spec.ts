@@ -21,6 +21,19 @@ test('renders the skills section', async ({ page }) => {
   await expect(section.getByRole('listitem').first()).toHaveText('Next')
 })
 
+test('renders up to three recent posts and a link to the blog', async ({
+  page
+}) => {
+  await page.goto('/')
+  const section = page.getByRole('region', { name: 'posts recentes' })
+  const posts = section.getByRole('listitem')
+  await expect(posts.first()).toBeVisible()
+  expect(await posts.count()).toBeLessThanOrEqual(3)
+  await expect(
+    section.getByRole('link', { name: 'Ver todos os posts' })
+  ).toHaveAttribute('href', '/blog')
+})
+
 test('shows the full role without typing when motion is reduced', async ({
   page
 }) => {
