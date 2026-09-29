@@ -1,12 +1,10 @@
-import { cleanup, render, screen } from '@testing-library/react'
+import { render, screen } from '@testing-library/react'
 import { usePathname } from 'next/navigation'
-import { afterEach, expect, test, vi } from 'vitest'
+import { expect, test, vi } from 'vitest'
 
 import { Nav } from './nav'
 
 vi.mock('next/navigation', () => ({ usePathname: vi.fn() }))
-
-afterEach(cleanup)
 
 const renderAt = (pathname: string) => {
   vi.mocked(usePathname).mockReturnValue(pathname)
