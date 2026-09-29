@@ -16,9 +16,9 @@ export const Hero = () => (
       <span aria-hidden className="mr-3 text-primary">
         &gt;
       </span>
-      {/* The invisible full role reserves the final height, so the line doesn't jump when it wraps at the end of the typing */}
+      {/* The invisible full role reserves the final height, so the line doesn't jump when it wraps at the end of the typing. It leaves out the cursor, which is gone once the role is complete and would otherwise wrap the reserve alone on wide screens */}
       <span aria-hidden className="grid *:col-start-1 *:row-start-1">
-        <span className="invisible">{role}|</span>
+        <span className="invisible">{role}</span>
         <TypingAnimation className="leading-[inherit] tracking-normal motion-reduce:hidden">
           {role}
         </TypingAnimation>

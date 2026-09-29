@@ -11,6 +11,7 @@ export default defineConfig({
     // A timezone behind UTC, so date-only frontmatter formatted without `timeZone: 'UTC'` shows the
     // previous day on any machine, CI (UTC) included
     env: { TZ: 'America/Sao_Paulo' },
-    include: ['src/**/*.test.{ts,tsx}']
+    include: ['src/**/*.test.{ts,tsx}'],
+    setupFiles: ['vitest.setup.ts']
   }
 })

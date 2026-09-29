@@ -1,9 +1,7 @@
-import { cleanup, render, screen } from '@testing-library/react'
-import { afterEach, expect, test } from 'vitest'
+import { render, screen } from '@testing-library/react'
+import { expect, test } from 'vitest'
 
 import { PostDate } from './post-date'
-
-afterEach(cleanup)
 
 test('renders the date in pt-BR without shifting the day', () => {
   render(<PostDate date={new Date('2026-09-27')} />)

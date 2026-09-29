@@ -1,5 +1,5 @@
-import { cleanup, render, screen, within } from '@testing-library/react'
-import { afterEach, beforeAll, expect, test, vi } from 'vitest'
+import { render, screen, within } from '@testing-library/react'
+import { beforeAll, expect, test, vi } from 'vitest'
 
 import { skills } from './_components/skills'
 import Home from './page'
@@ -15,9 +15,6 @@ beforeAll(() => {
     }
   )
 })
-
-// Testing Library only auto-cleans up when Vitest globals are enabled
-afterEach(cleanup)
 
 test('renders the role as the only h1', () => {
   render(<Home />)
