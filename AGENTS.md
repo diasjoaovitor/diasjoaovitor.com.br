@@ -65,7 +65,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ### Testing
 
-- Unit tests: **Vitest** (`vitest.config.mts`), `jsdom` environment, native Vite `resolve.tsconfigPaths` (no `vite-tsconfig-paths` plugin needed). Only picks up `src/**/*.test.{ts,tsx}`. Component tests use `@testing-library/react` / `@testing-library/dom`.
+- Unit tests: **Vitest** (`vitest.config.mts`), `jsdom` environment, native Vite `resolve.tsconfigPaths`. Only picks up `src/**/*.test.{ts,tsx}`. Component tests use `@testing-library/react` / `@testing-library/dom`.
 - E2E tests: **Playwright** (`playwright.config.ts`), tests live in `src/tests/e2e`, single `chromium` project, `webServer` auto-starts `pnpm dev` against `http://localhost:3000`. Failure artifacts go to `test-results/` (git- and ESLint-ignored). There are no global retries: a known flaky test gets `test.describe.configure({ retries })` in its own `describe`, with a comment linking the issue that tracks it (e.g. the first-paint theme test, #30).
 - Only test logic we wrote (filtering, lookups, mappings, transforms). Don't test library or framework behavior (e.g. a component that only passes props or HTML through, zod defaults, `Link` routing), and drop a test whose main cost is a mock needed only to render. Prefer a unit test; add an e2e test only for what a unit test can't cover.
 - Older issues may ask for tests that break the rule above (e.g. unit tests for `PostContent` in #10). Skip them without asking, and list them as dropped in the closing comment.
@@ -100,6 +100,10 @@ Examples: `feat/home-page#3`, `fix(card)/focus-ring#7`. Parentheses and `#` are 
 ## Issue Rules
 
 Before closing an issue, tick every completed checklist item (`- [x]`) in its body, e.g. with `gh issue edit <number> --body-file <file>`. Don't close an issue that still has unchecked items unless they were dropped or moved, and say so in the closing comment.
+
+## Documentation Rules
+
+`AGENTS.md` and `README.md` record only project conventions: what to do, where things live and how to handle a given case. Answers to the user's one-off questions (e.g. "why don't we use X?") stay in the conversation and are not written into them. Keep a "why" only when it prevents a likely mistaken "fix".
 
 ## Task Rules
 
