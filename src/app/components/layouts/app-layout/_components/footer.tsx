@@ -26,8 +26,8 @@ const contactLinks = [
 ]
 
 export const Footer = () => (
-  <footer className="border-t border-teal-500 text-xs text-muted-foreground dark:border-teal-950">
-    <div className="mx-auto flex max-w-4xl flex-col items-center gap-2 px-4 py-2 sm:flex-row sm:justify-between">
+  <footer className="border-t border-teal-500 px-4 text-xs text-muted-foreground dark:border-teal-950">
+    <div className="mx-auto flex max-w-4xl flex-col items-center gap-2 py-2 sm:flex-row sm:justify-between">
       <p>
         &copy; <CurrentYear /> diasjoaovitor.com.br
       </p>

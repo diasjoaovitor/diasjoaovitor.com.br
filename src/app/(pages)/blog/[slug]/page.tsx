@@ -1,14 +1,10 @@
-import { allPosts } from 'content-collections'
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { getVisiblePosts } from '@/app/helpers/posts'
+
 import { PostContent } from './_components/post-content'
 import { PostHeader } from './_components/post-header'
-
-const getVisiblePosts = () =>
-  allPosts.filter(
-    (post) => !post.draft || process.env.NODE_ENV === 'development'
-  )
 
 const getPost = (slug: string) => {
   const post = getVisiblePosts().find((post) => post.slug === slug)

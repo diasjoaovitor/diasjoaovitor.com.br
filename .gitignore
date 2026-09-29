@@ -5,3 +5,4 @@ next-env.d.ts
 .claude/settings.local.json
 test-results
 .content-collections
+.playwright-mcp
