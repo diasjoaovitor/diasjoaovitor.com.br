@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
 import { getVisiblePosts } from '@/app/helpers/posts'
+import { openGraphDefaults } from '@/app/helpers/site'
 
 import { Comments } from './_components/comments'
 import { PostContent } from './_components/post-content'
@@ -27,11 +28,10 @@ export const generateMetadata = async ({
     title,
     description: summary,
     openGraph: {
+      ...openGraphDefaults,
       title,
       description: summary,
       url: `/blog/${slug}`,
-      siteName: 'diasjoaovitor.com.br',
-      locale: 'pt_BR',
       type: 'article',
       publishedTime: date.toISOString(),
       authors: [author]

@@ -1,22 +1,23 @@
 import type { Metadata } from 'next'
 
+import {
+  openGraphDefaults,
+  siteDescription,
+  siteTitle
+} from '@/app/helpers/site'
+
 import { Hero } from './_components/hero'
 import { RecentPosts } from './_components/recent-posts'
 import { SkillMarquee } from './_components/skill-marquee'
 
-const title = 'João Vitor — Desenvolvedor Fullstack'
-const description =
-  'Anotações técnicas sobre desenvolvimento fullstack, escritas por João Vitor.'
-
 export const metadata: Metadata = {
-  title,
-  description,
+  title: siteTitle,
+  description: siteDescription,
   openGraph: {
-    title,
-    description,
+    ...openGraphDefaults,
+    title: siteTitle,
+    description: siteDescription,
     url: '/',
-    siteName: 'diasjoaovitor.com.br',
-    locale: 'pt_BR',
     type: 'website'
   }
 }
