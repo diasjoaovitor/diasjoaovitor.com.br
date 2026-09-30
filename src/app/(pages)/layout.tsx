@@ -5,6 +5,13 @@ import { Geist, Geist_Mono } from 'next/font/google'
 
 import { AppLayout } from '@/app/components/layouts/app-layout'
 import { ThemeProvider } from '@/app/components/providers/theme-provider'
+import {
+  ogImage,
+  siteDescription,
+  siteName,
+  siteTitle,
+  siteUrl
+} from '@/app/helpers/site'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -17,13 +24,18 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://diasjoaovitor.com.br'),
+  metadataBase: new URL(siteUrl),
   title: {
-    default: 'João Vitor — Desenvolvedor Fullstack',
+    default: siteTitle,
     template: '%s — João Vitor'
   },
-  description:
-    'Anotações técnicas sobre desenvolvimento fullstack, escritas por João Vitor.'
+  description: siteDescription,
+  alternates: {
+    types: {
+      'application/rss+xml': [{ url: '/feed.xml', title: siteName }]
+    }
+  },
+  twitter: { card: 'summary_large_image', images: [ogImage] }
 }
 
 const RootLayout = ({ children }: LayoutProps<'/'>) => (

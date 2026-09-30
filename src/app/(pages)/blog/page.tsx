@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import { PostList } from '@/app/components/blocks/post/post-list'
 import { TerminalCommand } from '@/app/components/ui/custom/terminal-command'
 import { getVisiblePosts } from '@/app/helpers/posts'
+import { openGraphDefaults } from '@/app/helpers/site'
 
 const title = 'Blog'
 const description =
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
   title,
   description,
   openGraph: {
+    ...openGraphDefaults,
     title,
     description,
     url: '/blog',
