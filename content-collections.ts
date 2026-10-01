@@ -42,6 +42,29 @@ const posts = defineCollection({
   }
 })
 
+const legalPages = defineCollection({
+  name: 'legalPages',
+  directory: 'content/legal',
+  include: '*.md',
+  schema: z.object({
+    title: z.string(),
+    summary: z.string(),
+    updatedAt: z.coerce.date(),
+    content: z.string()
+  }),
+  transform: async (document, context) => {
+    const html = await compileMarkdown(context, document, {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [rehypeFootnoteLabels]
+    })
+    return {
+      ...document,
+      slug: document._meta.path,
+      html
+    }
+  }
+})
+
 export default defineConfig({
-  content: [posts]
+  content: [posts, legalPages]
 })

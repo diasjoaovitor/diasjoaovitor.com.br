@@ -44,7 +44,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 - Components are grouped by role: `ui/` for visual building blocks, `blocks/` for composed pieces reused across pages (grouped by domain, e.g. `blocks/post/`), `providers/` for context providers and `layouts/` for page shells, whose private parts live in a `_components/` folder next to them.
 - Global styles moved to `src/app/styles/globals.css`.
 - Anything that is not frontend-exclusive, such as `src/tests`, sits directly under `src`, as a sibling of `app`.
-- Blog posts are Markdown files with YAML frontmatter in `content/posts`, at the repository root, loaded and typed at build time by [Content Collections](https://www.content-collections.dev) (`content-collections.ts`).
+- Blog posts are Markdown files with YAML frontmatter in `content/posts`, at the repository root, loaded and typed at build time by [Content Collections](https://www.content-collections.dev) (`content-collections.ts`). The Terms of Use and the Privacy Policy are Markdown too, in `content/legal`.
 - Posts are compiled with GitHub Flavored Markdown (`remark-gfm`) and syntax highlighting (`rehype-pretty-code` + `shiki`), styled with `@tailwindcss/typography` and served at `/blog/<slug>`. Drafts (`draft: true`) only show up under `pnpm dev`. Footnote labels are translated to pt-BR by a small rehype plugin in `src/markdown`.
 - The site serves `/sitemap.xml`, `/robots.txt`, an RSS feed at `/feed.xml` and a build-time Open Graph image. The canonical URL comes from the `SITE_URL` environment variable, which defaults to `https://diasjoaovitor.com.br`.
 

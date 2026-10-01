@@ -1,11 +1,11 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 
+import { MarkdownContent } from '@/app/components/blocks/markdown-content'
 import { getVisiblePosts } from '@/app/helpers/posts'
 import { openGraphDefaults } from '@/app/helpers/site'
 
 import { Comments } from './_components/comments'
-import { PostContent } from './_components/post-content'
 import { PostHeader } from './_components/post-header'
 
 const getPost = (slug: string) => {
@@ -46,7 +46,7 @@ const PostPage = async ({ params }: PageProps<'/blog/[slug]'>) => {
   return (
     <article className="py-12">
       <PostHeader title={post.title} date={post.date} />
-      <PostContent html={post.html} />
+      <MarkdownContent html={post.html} />
       <Comments />
     </article>
   )

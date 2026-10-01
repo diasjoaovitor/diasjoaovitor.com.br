@@ -1,3 +1,4 @@
+import { allLegalPages } from 'content-collections'
 import type { MetadataRoute } from 'next'
 
 import { getVisiblePosts } from '@/app/helpers/posts'
@@ -13,6 +14,10 @@ const sitemap = (): MetadataRoute.Sitemap => {
     ...posts.map(({ slug, date }) => ({
       url: `${siteUrl}/blog/${slug}`,
       lastModified: date
+    })),
+    ...allLegalPages.map(({ slug, updatedAt }) => ({
+      url: `${siteUrl}/${slug}`,
+      lastModified: updatedAt
     }))
   ]
 }
