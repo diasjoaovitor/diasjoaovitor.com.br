@@ -1,7 +1,7 @@
 import type { Post } from 'content-collections'
 import Link from 'next/link'
 
-import { PostDate } from './post-date'
+import { FormattedDate } from '@/app/components/blocks/formatted-date'
 
 export type TPostHeadingLevel = 'h2' | 'h3'
 
@@ -22,6 +22,6 @@ export const PostListItem = ({
       </Link>
     </Heading>
     <p className="text-muted-foreground">{summary}</p>
-    <PostDate date={date} className="font-mono text-sm" />
+    <FormattedDate date={date} className="font-mono text-sm" />
   </article>
 )

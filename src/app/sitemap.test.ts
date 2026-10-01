@@ -1,11 +1,14 @@
-import type { Post } from 'content-collections'
+import type { LegalPage, Post } from 'content-collections'
 import { afterEach, beforeEach, expect, test, vi } from 'vitest'
 
 import sitemap from './sitemap'
 
-const { allPosts } = vi.hoisted(() => ({ allPosts: [] as Partial<Post>[] }))
+const { allPosts, allLegalPages } = vi.hoisted(() => ({
+  allPosts: [] as Partial<Post>[],
+  allLegalPages: [] as Partial<LegalPage>[]
+}))
 
-vi.mock('content-collections', () => ({ allPosts }))
+vi.mock('content-collections', () => ({ allPosts, allLegalPages }))
 
 beforeEach(() => {
   vi.stubEnv('NODE_ENV', 'production')
@@ -13,6 +16,7 @@ beforeEach(() => {
 
 afterEach(() => {
   allPosts.length = 0
+  allLegalPages.length = 0
   vi.unstubAllEnvs()
 })
 
@@ -47,4 +51,15 @@ test('lists only the home and the blog, undated, without posts', () => {
     { url: 'https://diasjoaovitor.com.br', lastModified: undefined },
     { url: 'https://diasjoaovitor.com.br/blog', lastModified: undefined }
   ])
+})
+
+test('lists the legal pages, dated by their last update', () => {
+  allLegalPages.push({
+    slug: 'termos-de-uso',
+    updatedAt: new Date('2026-04-01')
+  })
+  expect(sitemap()).toContainEqual({
+    url: 'https://diasjoaovitor.com.br/termos-de-uso',
+    lastModified: new Date('2026-04-01')
+  })
 })

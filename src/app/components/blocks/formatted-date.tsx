@@ -5,7 +5,7 @@ const dateFormat = new Intl.DateTimeFormat('pt-BR', {
   timeZone: 'UTC'
 })
 
-export const PostDate = ({
+export const FormattedDate = ({
   date,
   className
 }: {
