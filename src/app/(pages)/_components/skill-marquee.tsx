@@ -4,7 +4,7 @@ import { Marquee } from '@/app/components/ui/magicui/marquee'
 import { skills } from './skills'
 
 export const SkillMarquee = () => (
-  <section aria-labelledby="skills-heading" className="flex flex-col gap-3">
+  <section aria-labelledby="skills-heading">
     <TerminalCommand
       as="h2"
       id="skills-heading"
@@ -27,7 +27,7 @@ export const SkillMarquee = () => (
     <Marquee
       aria-hidden
       pauseOnHover
-      className="mask-x-from-92% [--duration:60s] [--gap:2rem] motion-reduce:hidden"
+      className="mt-4 mask-x-from-92% [--duration:60s] [--gap:2rem] motion-reduce:hidden"
     >
       {skills.map(({ label, Icon }) => (
         <div

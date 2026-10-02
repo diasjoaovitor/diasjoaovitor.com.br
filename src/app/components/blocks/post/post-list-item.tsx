@@ -12,7 +12,7 @@ export const PostListItem = ({
   post: Pick<Post, 'slug' | 'title' | 'summary' | 'date'>
   headingLevel?: TPostHeadingLevel
 }) => (
-  <article className="group relative flex flex-col gap-2 py-6 transition-colors hover:bg-muted/50 sm:px-4">
+  <article className="group relative flex flex-col gap-2 py-4 transition-colors hover:bg-muted/50 sm:px-4">
     <Heading className="text-xl font-semibold tracking-tight">
       <Link
         href={`/blog/${slug}`}

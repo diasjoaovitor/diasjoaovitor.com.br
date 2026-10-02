@@ -25,7 +25,7 @@ export const LegalNav = () => {
               aria-current={pathname === href ? 'page' : undefined}
               className={cn(
                 footerLinkClassName,
-                'aria-[current=page]:text-primary aria-[current=page]:underline'
+                'text-muted-foreground aria-[current=page]:text-primary aria-[current=page]:underline'
               )}
             >
               {label}
