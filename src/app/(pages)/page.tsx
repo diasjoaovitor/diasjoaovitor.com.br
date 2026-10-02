@@ -6,6 +6,7 @@ import {
   siteTitle
 } from '@/app/helpers/site'
 
+import { Background } from './_components/background'
 import { Hero } from './_components/hero'
 import { RecentPosts } from './_components/recent-posts'
 import { SkillMarquee } from './_components/skill-marquee'
@@ -23,11 +24,14 @@ export const metadata: Metadata = {
 }
 
 const HomePage = () => (
-  <div className="flex flex-1 flex-col justify-center gap-16 py-12">
-    <Hero />
-    <SkillMarquee />
-    <RecentPosts />
-  </div>
+  <>
+    <div className="flex flex-1 flex-col justify-center gap-16 py-12">
+      <Hero />
+      <SkillMarquee />
+      <RecentPosts />
+    </div>
+    <Background />
+  </>
 )
 
 export default HomePage

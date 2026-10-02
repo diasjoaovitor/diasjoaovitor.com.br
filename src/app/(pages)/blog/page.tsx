@@ -30,7 +30,7 @@ const BlogPage = () => {
     <div className="flex flex-col gap-8 py-12">
       <header className="flex flex-col gap-3">
         <TerminalCommand command="ls ~/blog" />
-        <h1 className="flex text-4xl leading-tight font-semibold sm:text-5xl">
+        <h1 className="flex text-4xl leading-tight font-semibold">
           <span aria-hidden className="mr-3 text-primary">
             &gt;
           </span>
