@@ -28,6 +28,6 @@ Group findings by severity, most severe first:
 - **Melhoria**: clarity, structure, missing references, accessibility.
 - **Sugestão**: optional style points.
 
-For each finding: the location (`content/posts/<slug>.md:<line>`), the current text, the proposed text and a one-line reason (with the source URL for fact-checking findings). Skip categories with no findings instead of saying they're fine.
+For each finding: the location (`content/posts/YYYY-MM-DD-<slug>.md:<line>`), the current text, the proposed text and a one-line reason (with the source URL for fact-checking findings). Skip categories with no findings instead of saying they're fine.
 
 Then ask which findings to apply. After applying, run `pnpm exec cspell --no-progress <file>`, `pnpm exec eslint <file>` and `pnpm exec prettier --check <file>`.

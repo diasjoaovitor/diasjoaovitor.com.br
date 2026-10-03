@@ -111,7 +111,7 @@ Open a pull request against `main` (`gh pr create` or the GitHub UI):
 
 Posts follow the same flow (issue, branch, pull request), with these steps in place of "Implement and test":
 
-1. Run the `new-post` skill: it asks about the topic, the reader and the takeaway, creates `content/posts/<slug>.md` with `draft: true` and `lang: pt-BR`, and writes the outline with you.
+1. Run the `new-post` skill: it asks about the topic, the reader and the takeaway, creates `content/posts/YYYY-MM-DD-<slug>.md` with `draft: true` and `lang: pt-BR`, and writes the outline with you.
 2. Write the post. LTeX+ in VS Code flags grammar as you type; preview it at `http://localhost:3000/blog/<slug>` with `pnpm dev`.
 3. Run the `cite` skill to add references (GFM footnotes) for the claims marked with `<!-- cite: ... -->` or any other claim.
 4. Run the `review-post` skill and accept the findings you agree with.

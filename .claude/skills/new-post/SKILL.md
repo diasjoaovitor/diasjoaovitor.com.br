@@ -17,7 +17,7 @@ Ask one question at a time, each with a recommended answer, and stop asking once
 ## 2. Create the file
 
 - Slug: short, lowercase, hyphen-separated, in pt-BR without accents (e.g. `react-compiler-na-pratica`). It's the URL (`/blog/<slug>`), so don't change it after publishing.
-- Create `content/posts/<slug>.md` with this frontmatter (fields from `content-collections.ts`):
+- Create `content/posts/YYYY-MM-DD-<slug>.md`, prefixed with the same date as the frontmatter `date` (the build fails if they differ; the prefix isn't part of the URL), with this frontmatter (fields from `content-collections.ts`):
 
   ```yaml
   ---

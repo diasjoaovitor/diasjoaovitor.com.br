@@ -4,6 +4,7 @@ import rehypePrettyCode from 'rehype-pretty-code'
 import remarkGfm from 'remark-gfm'
 import { z } from 'zod'
 
+import { getPostSlug } from './src/markdown/post-slug'
 import { rehypeFootnoteLabels } from './src/markdown/rehype-footnote-labels'
 
 const posts = defineCollection({
@@ -36,7 +37,7 @@ const posts = defineCollection({
     })
     return {
       ...document,
-      slug: document._meta.path,
+      slug: getPostSlug(document._meta.path, document.date),
       html
     }
   }
