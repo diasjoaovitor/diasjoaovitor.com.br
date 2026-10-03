@@ -1,6 +1,7 @@
 ---
 title: 'Política de Privacidade'
 summary: 'Quais dados o site diasjoaovitor.com.br trata, por que e quais são os seus direitos.'
+lang: pt-BR
 updatedAt: 2026-10-01
 ---
 

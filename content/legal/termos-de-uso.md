@@ -1,6 +1,7 @@
 ---
 title: 'Termos de Uso'
 summary: 'Condições para usar o site diasjoaovitor.com.br, seu conteúdo e os comentários.'
+lang: pt-BR
 updatedAt: 2026-10-01
 ---
 

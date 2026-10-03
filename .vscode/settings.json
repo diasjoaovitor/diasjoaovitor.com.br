@@ -1,5 +1,17 @@
 {
   "editor.formatOnSave": true,
   "editor.codeActionsOnSave": { "source.fixAll.eslint": "always" },
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "ltex.language": "en-US",
+  "ltex.enabled": [
+    "markdown",
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  "ltex.dictionary": {
+    "en-US": [":../.cspell/project-words.txt"],
+    "pt-BR": [":../.cspell/project-words.txt"]
+  }
 }
