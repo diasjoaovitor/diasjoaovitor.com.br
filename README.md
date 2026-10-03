@@ -92,6 +92,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 - `.claude/` contains a `ui-reviewer` subagent that reviews UI semantics and accessibility, and these skills:
   - `new-component`: add shadcn or shared components.
   - `new-post`: start a post and shape its outline with the author, without writing the prose.
+  - `write-post`: write a complete post from its outline, in the author's voice, to publish or, in reference mode (`content/references`), to rewrite from scratch.
   - `cite`: find, verify and add references as footnotes.
   - `review-post`: review a post (spelling, grammar, clarity, structure, fact-checking, references, accessibility and frontmatter).
   - `review-copy`: review the text in the code (naming, comments, test descriptions, UI copy and docs).

@@ -46,4 +46,4 @@ Then review the outline with the author: does each section serve the takeaway, i
 
 ## 4. While the author writes
 
-When asked, help with a specific section: suggest an example, a clearer order for the arguments, a table to replace a dense paragraph, or a transition. Keep suggestions short and point at the exact place in the file. Once a draft is done, suggest running the `review-post` skill.
+When asked, help with a specific section: suggest an example, a clearer order for the arguments, a table to replace a dense paragraph, or a transition. Keep suggestions short and point at the exact place in the file. Once a draft is done, suggest running the `review-post` skill. If the author wants you to write the whole post instead, that's the `write-post` skill.
