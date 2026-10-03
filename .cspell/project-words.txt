@@ -1,4 +1,6 @@
+batcat
 bradlc
+chsh
 claude
 commitlint
 contentinfo
@@ -11,6 +13,8 @@ frontmatter
 geist
 giscus
 github
+glab
+jorgebucaran
 LGPD
 linkedin
 ltex
