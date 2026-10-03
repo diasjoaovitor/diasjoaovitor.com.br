@@ -23,6 +23,7 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 | `pnpm type-check`                           | Generate route types and type-check with `tsc --noEmit` |
 | `pnpm eslint:check` / `pnpm eslint:fix`     | Lint (and auto-fix) with ESLint                         |
 | `pnpm prettier:check` / `pnpm prettier:fix` | Check (and rewrite) formatting                          |
+| `pnpm spell:check`                          | Check spelling (English and pt-BR) with cspell          |
 | `pnpm test` / `pnpm test:watch`             | Run the Vitest unit tests                               |
 | `pnpm test:e2e` / `pnpm test:e2e:ui`        | Run the Playwright end-to-end tests                     |
 | `pnpm shadcn:add <name>`                    | Add a shadcn/ui component                               |
@@ -46,6 +47,7 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 - Anything that is not frontend-exclusive, such as `src/tests`, sits directly under `src`, as a sibling of `app`.
 - Blog posts are Markdown files with YAML frontmatter in `content/posts`, at the repository root, loaded and typed at build time by [Content Collections](https://www.content-collections.dev) (`content-collections.ts`). The Terms of Use and the Privacy Policy are Markdown too, in `content/legal`.
 - Posts are compiled with GitHub Flavored Markdown (`remark-gfm`) and syntax highlighting (`rehype-pretty-code` + `shiki`), styled with `@tailwindcss/typography` and served at `/blog/<slug>`. Drafts (`draft: true`) only show up under `pnpm dev`. Footnote labels are translated to pt-BR by a small rehype plugin in `src/markdown`.
+- References in posts are GFM footnotes with descriptive labels (`[^react-compiler]`), defined at the end of the file as `[Title](URL), publisher, year`.
 - The site serves `/sitemap.xml`, `/robots.txt`, an RSS feed at `/feed.xml` and a build-time Open Graph image. The canonical URL comes from the `SITE_URL` environment variable, which defaults to `https://diasjoaovitor.com.br`.
 
 ### Styling and UI
@@ -59,7 +61,9 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 
 - **ESLint** (flat config) extends `eslint-config-next` and adds the `unicorn`, `simple-import-sort`, `tailwindcss`, `promise` and `prefer-arrow-functions` plugins, plus `@eslint/json` and `@eslint/markdown`.
 - **Prettier** with single quotes, no semicolons and no trailing commas. Indentation and whitespace are enforced by `.editorconfig`.
-- Scripts: `pnpm eslint:check`, `pnpm eslint:fix`, `pnpm prettier:check`, `pnpm prettier:fix` and `pnpm type-check`.
+- **cspell** checks the spelling of the whole repository (code, comments, docs and content) in English and pt-BR (`cspell.json`). Legitimate terms go in `.cspell/project-words.txt`, one per line.
+- **LTeX+** (recommended VS Code extension) checks grammar with LanguageTool in Markdown and in code comments. The workspace default is `en-US`; posts and legal pages set `lang: pt-BR` in their frontmatter. It shares the cspell word list.
+- Scripts: `pnpm eslint:check`, `pnpm eslint:fix`, `pnpm prettier:check`, `pnpm prettier:fix`, `pnpm spell:check` and `pnpm type-check`.
 
 ### Code comments
 
@@ -73,19 +77,24 @@ The full conventions live in [`AGENTS.md`](./AGENTS.md), and the step-by-step fl
 ### Git hooks and CI
 
 - **Husky hooks:**
-  - `pre-commit` runs `lint-staged` (Prettier, ESLint and `vitest related` on staged files).
+  - `pre-commit` runs `lint-staged` (Prettier, ESLint, cspell and `vitest related` on staged files).
   - `commit-msg` adds the emoji prefix and runs `commitlint`.
   - `pre-push` runs `pnpm type-check` and `pnpm test:e2e`.
 - **Commit messages** are written in English, in the imperative mood and lowercase, with a semantic prefix, for example `✨ feat: add product page`. Typing `feat: ...` is enough, since the hook adds the emoji.
 - **Branches:** work for each issue goes on a new branch named `<scope>/<title>#<issue>`, where `<scope>` is the commit prefix without the emoji, for example `feat/home-page#3`. For very specific work, add an optional target in parentheses (a page, component or other area), for example `fix(card)/focus-ring#7`. Nothing for an issue is committed directly to `main`.
 - **Issues:** tick every completed checklist item in the issue body before closing it.
-- **GitHub Actions** (`.github/workflows/ci.yml`) runs on every pull request: commitlint, type-check, ESLint, Prettier, unit tests and E2E tests.
+- **GitHub Actions** (`.github/workflows/ci.yml`) runs on every pull request: commitlint, type-check, ESLint, Prettier, cspell, unit tests and E2E tests.
 
 ### AI assistant setup
 
 - `AGENTS.md` (imported by `CLAUDE.md`) documents the project conventions for coding agents.
 - `.mcp.json` configures the `context7` (library docs) and `playwright` MCP servers.
-- `.claude/` contains a `new-component` skill for adding shadcn or shared components and a `ui-reviewer` subagent that reviews UI semantics and accessibility.
+- `.claude/` contains a `ui-reviewer` subagent that reviews UI semantics and accessibility, and these skills:
+  - `new-component`: add shadcn or shared components.
+  - `new-post`: start a post and shape its outline with the author, without writing the prose.
+  - `cite`: find, verify and add references as footnotes.
+  - `review-post`: review a post (spelling, grammar, clarity, structure, fact-checking, references, accessibility and frontmatter).
+  - `review-copy`: review the text in the code (naming, comments, test descriptions, UI copy and docs).
 
 #### Context7 API key
 

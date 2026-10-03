@@ -61,11 +61,12 @@ git switch -c 'feat(home)/hero#7'
 - Install dependencies with `pnpm add -E <pkg>` (or `pnpm add -D -E <pkg>`), so versions stay pinned.
 - Add or update tests alongside the code: unit tests as `src/**/*.test.{ts,tsx}` (Vitest) and end-to-end tests in `src/tests/e2e` (Playwright). Test only our own logic (see Testing in [`AGENTS.md`](../AGENTS.md)); a task asking for any other test is dropped.
 - If the task changes a convention, update `AGENTS.md` and `README.md` in the same branch.
+- Before committing, run the `review-copy` skill on the diff to review naming, comments, test descriptions and UI copy.
 
 Check locally before committing:
 
 ```bash
-pnpm type-check && pnpm eslint:check && pnpm prettier:check && pnpm test
+pnpm type-check && pnpm eslint:check && pnpm prettier:check && pnpm spell:check && pnpm test
 ```
 
 ## 6. Commit
@@ -105,6 +106,16 @@ Open a pull request against `main` (`gh pr create` or the GitHub UI):
    ```
 
 4. Confirm the issue is closed as completed.
+
+## Writing a post
+
+Posts follow the same flow (issue, branch, pull request), with these steps in place of "Implement and test":
+
+1. Run the `new-post` skill: it asks about the topic, the reader and the takeaway, creates `content/posts/<slug>.md` with `draft: true` and `lang: pt-BR`, and writes the outline with you.
+2. Write the post. LTeX+ in VS Code flags grammar as you type; preview it at `http://localhost:3000/blog/<slug>` with `pnpm dev`.
+3. Run the `cite` skill to add references (GFM footnotes) for the claims marked with `<!-- cite: ... -->` or any other claim.
+4. Run the `review-post` skill and accept the findings you agree with.
+5. Set `draft: false` and the publication `date`, then commit and open the pull request. Check the post, the listing, the comments, the RSS feed and the sitemap on the preview deployment.
 
 ## Changes without an issue
 
