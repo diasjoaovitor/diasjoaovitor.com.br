@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 const pages = [
-  { link: 'Termos de uso', heading: 'Termos de Uso', url: '/termos-de-uso' },
+  { link: 'Termos de Uso', heading: 'Termos de Uso', url: '/termos-de-uso' },
   {
     link: 'Privacidade',
     heading: 'Política de Privacidade',
@@ -14,7 +14,7 @@ for (const { link, heading, url } of pages) {
     await page.goto('/')
     const footerLink = page
       .getByRole('contentinfo')
-      .getByRole('navigation', { name: 'Legal' })
+      .getByRole('navigation', { name: 'Informações legais' })
       .getByRole('link', { name: link })
     await footerLink.click()
     await page.waitForURL(url)

@@ -13,7 +13,7 @@ const currentLinks = () =>
     .map((link) => link.textContent)
 
 test.each([
-  ['/termos-de-uso', ['Termos de uso']],
+  ['/termos-de-uso', ['Termos de Uso']],
   ['/politica-de-privacidade', ['Política de Privacidade']],
   ['/', []],
   ['/termos-de-uso-antigos', []]

@@ -17,8 +17,6 @@ export const metadata: Metadata = {
     title,
     description,
     url: '/blog',
-    siteName: 'diasjoaovitor.com.br',
-    locale: 'pt_BR',
     type: 'website'
   }
 }

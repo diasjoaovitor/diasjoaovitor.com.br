@@ -13,4 +13,4 @@ description: Add a new shadcn/ui component or a new shared frontend component to
 
 ## Adding a new shared (non-shadcn) component
 
-Same import/lint/test steps as above (2–5), skipping the `shadcn:add` step. Place the file under `src/app/components` (or `src/app/lib` if it's a hook/util, not UI).
+Same import/lint/test steps as above (2–5), skipping the `shadcn:add` step. Place the file under `src/app/components`. Hooks go in `src/app/hooks` and other helpers in `src/app/helpers`, not in `src/app/lib` (see Project structure in `AGENTS.md`).

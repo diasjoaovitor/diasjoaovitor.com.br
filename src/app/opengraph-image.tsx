@@ -14,7 +14,7 @@ export const size = ogImageSize
 
 export const contentType = 'image/png'
 
-const OpengraphImage = () =>
+const OpenGraphImage = () =>
   new ImageResponse(
     <div
       style={{
@@ -55,6 +55,6 @@ const OpengraphImage = () =>
     size
   )
 
-export default OpengraphImage
+export default OpenGraphImage
 
 export { siteTitle as alt } from '@/app/helpers/site'

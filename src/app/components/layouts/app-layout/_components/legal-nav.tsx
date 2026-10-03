@@ -7,7 +7,7 @@ import { usePathname } from 'next/navigation'
 import { footerLinkClassName } from './footer-link'
 
 const legalLinks = [
-  { label: 'Termos de uso', href: '/termos-de-uso' },
+  { label: 'Termos de Uso', href: '/termos-de-uso' },
   { label: 'Política de Privacidade', href: '/politica-de-privacidade' }
 ]
 
@@ -15,7 +15,7 @@ export const LegalNav = () => {
   const pathname = usePathname()
 
   return (
-    <nav aria-label="Legal">
+    <nav aria-label="Informações legais">
       {/* WebKit drops list semantics when list-style is none (https://webkit.org/b/170179) */}
       <ul role="list" className="flex flex-wrap justify-center gap-2">
         {legalLinks.map(({ label, href }) => (
